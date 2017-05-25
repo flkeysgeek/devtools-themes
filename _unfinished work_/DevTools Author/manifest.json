@@ -1,0 +1,14 @@
+{
+   "content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'",
+   "description": "A selection of author settings for Chrome Developer Tools.",
+   "devtools_page": "devtools.html",
+   "icons": {
+      "128": "dist/images/icon_128.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0+DOIoqgmqk32gEjqYSq8oVBCos4cOnvbhlL4P6TwMUzKZUA+SvsMwODwlVFkusGodh+rNnpHLhG55X31Bp7U/IBYQOy++YvSrhESBbfVdP1KUZ8Q/nY3y9+n8OkJ5rfteB9jTfXsPqmKGdQ/2dvXaxBfGAUFE3IHTFx3FdShC46o9SIMBENVPsBxhz4WaZKc4Md+xhOp56lvVtU9BEu3wCFRl1v34U50UWxQhupW1m1xgT6L0q75m61VgOr75GmNuZtns5MaleXDmLqqBaOtRcimpbzITPpk8IsvstpETLyHrFtmaOCESDwlbK7vyvBpfzzAideocQkkyYumpvLEQIDAQAB",
+   "manifest_version": 2,
+   "name": "DevTools Author",
+   "permissions": [ "storage" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "0.6.6"
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles/panel.css" />
+  <script src="scripts/ga.js" async></script>
+</head>
+<body>
+  <div class="alert">Close and reopen DevTools to apply your changes!</div>
+  
+  <div class="container">
+      <h4><small>Current Theme:</small></h4>
+      <header class="title">
+        <h1 id="currentTheme"></h1>
+      </header>
+      <ul class="palette"></ul>
+      <select id="theme-options" data-options="theme in themes"></select>
+
+      <div class="font-family">
+        <label for="font-family-input">Font Family: <small>(press enter to save)</small></label>
+        <input id="font-family-input" type="text" placeholder="e.g. Menlo" />
+      </div>
+      
+      <div class="font-size">
+        <label for="font-size-input">Font size: <output id="font-size-output" for="font-size-input"></output>px</label>
+        <input id="font-size-input" type="range" min="10" max="22" />
+      </div>
+  </div>
+  
+  <div class="footer">
+    Mahalo from <a target="_blank" href="https://github.com/micjamking">Mike King</a>
+  </div>
+
+  <script src="scripts/panel.js"></script>
+</body>
+</html>

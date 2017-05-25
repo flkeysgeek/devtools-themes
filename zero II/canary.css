@@ -3152,9 +3152,6 @@ li.breakpoint-hit .breakpoint-hit-marker,
 	min-height: 0 !important;
 	border-width: 0 !important;
 	background: #2f2f2f !important;
-	background: yellow !important;
-	
-	
 	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.37) !important;
 
 
@@ -4502,7 +4499,7 @@ html /deep/ .component-root {
 .CodeMirror-code {
 	color: #cccccc;
 }
-.source-frame-eval-expression {
+.source-frame-eval-expression {						/* hover: popup colors non-object */
 	background-color: #364c3b !important;
 	border-color: #56795e !important;
 }
@@ -4510,7 +4507,7 @@ html /deep/ .component-root {
 	color: #89f5a2 !important;
 }
 .cm-comment {
-	color: rgba(255, 192, 203, 0.83) !important;	/* dim pink */
+	color: rgba(255, 192, 203, 0.83) !important; 	/* dim pink */
 	font-style: italic;
 }
 .cm-variable {
@@ -5409,13 +5406,12 @@ body /deep/ .dt-checkbox-text,
 	-webkit-mask-position: -60px 90px;
 }
 
-/*# sourceMappingURL=canary.css.map */
-
+/*-----------------------------------------------------------------------
 .object-popover-title {
 	color: red !important;
 }
 .object-properties-section {
 	background-color: aqua !important;
 }
-
+------------------------------------------------------------------------*/
 
