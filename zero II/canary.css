@@ -3153,9 +3153,6 @@ li.breakpoint-hit .breakpoint-hit-marker,
 	border-width: 0 !important;
 	background: #2f2f2f !important;
 	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.37) !important;
-
-
-
 }
 .popover.bottom-left-arrow .arrow {
 	-webkit-mask-position: 0 -19px;
@@ -5064,18 +5061,40 @@ html /deep/ .component-root {
 }
 ::shadow .tabbed-pane-header-tab:hover {
 	color: #f8f8f8 !important;
+	color: #b5b4b4 !important;			/* little lighter for green BG */
 	background-color: rgba(0, 0, 0, 0) !important;
 }
 ::shadow .tabbed-pane-header-tab.selected {
 	background: none !important;
 	border-top: 2px solid #89f5a2 !important;
 	color: #f8f8f8 !important;
+	color: #f9f9f9 !important;			/* just a hair darker */
 	font-size: 1em;
 }
 ::shadow .tabbed-pane-header-contents {
 	box-shadow: inset 0 1px 0 #626262;
 	color: #999999 !important;
-	/* ??? #bcbcbc lighter than #999 */
+}
+/*------------------------------------------------------------------------
+inspector / edit popovers (hopefully just sources tab)
+	black on black not very reasdavble
+	up arrow does not look good in black and half covering next line
+------------------------------------------------------------------------*/
+::shadow .widget.has-padding {
+	margin-top: -3px;						/* move up to fullly cover next line */	
+}
+::shadow .widget.has-padding + [is=ui-icon] { 
+    display: none;							/* kill up arrow -- clutter */
+}
+::shadow .widget.has-padding {
+	background-color: #364c3b;				/* same green BG as breakpoint pause */
+	box-shadow: rgba(86,121,94,1.00) 0px 0px 0px 1px, 
+		rgba(86,121,94, 0.2) 0px 2px 4px, 
+		rgba(86,121,94, 0.1) 0px 2px 6px !important;	
+}
+/*----------------------------------------------------------------------*/
+::shadow .tabbed-pane-header-tab:not(.selected):not(:hover) {
+    color: #b3b3b3 !important;				/* little lighter un-selected tab -- probably close X */
 }
 ::shadow .tabbed-pane-header-tabs-drop-down-container {
 	background-color: rgba(0, 0, 0, 0) !important;
@@ -5357,9 +5376,11 @@ body /deep/ .dt-checkbox-text,
 ::shadow .tree-outline li.expanded::before {
 	-webkit-mask-position: -16px 0 !important;
 }
-::shadow .tree-outline li::before,
-::shadow .tree-outline li.expanded::before {
+::shadow .tree-outline li::before, 
+::shadow .tree-outline li.expanded::before { 
+	/* csslint ignore:start */
 	-webkit-mask-image: -webkit-image-set(url("Images/treeoutlineTriangles.png") 1x, url("Images/treeoutlineTriangles_2x.png") 2x);
+	/* csslint ignore:end */
 	background-color: #8c8c8c !important;
 	background-image: none !important;
 	-webkit-mask-repeat: no-repeat !important;
@@ -5405,13 +5426,4 @@ body /deep/ .dt-checkbox-text,
 .spritesheet-smallicons:not(.icon-mask).smallicon-inline-breakpoint-conditional {
 	-webkit-mask-position: -60px 90px;
 }
-
-/*-----------------------------------------------------------------------
-.object-popover-title {
-	color: red !important;
-}
-.object-properties-section {
-	background-color: aqua !important;
-}
-------------------------------------------------------------------------*/
 
