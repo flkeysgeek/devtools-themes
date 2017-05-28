@@ -1,95 +1,29 @@
-canary.css updated the HARD WAY
+**Improve readability of devtools Zero Dark Matrix canary.css**
 
--grabbed files installed by chrome web store -- Zero Dark Matrix
--formatted css as dedcribed below and directly updated canary.css
--installed from extensions tab via "load unpacked extension"
+## theme changes ##
+- comment color changed to dim pink
+- gutter lineno little brighter
+- elements > side-panel > styles: unmatched selectors changed to lime green
+- suggest popover .selected and :hover BG changed to deep purple
+- sources > javascript: Object inspector BG changed to green  
+...no contrast with black on black  
+...mouseover nearly impossible to see black hover  
+...arrow above popover border more clutter than value (hidden)  
+...moved popup up to fully cover next line -- sliver looks like junk  
 
-downloaded: https://github.com/mauricecruz/zero-base-themes
-but only using as rewference -- have not learned how to build yet.
+**standard Dark theme** . . . . . **Zero Dark Matrix**  
+![](http://i.imgur.com/JN7CrzM.png) . ![](http://i.imgur.com/H7KxeL1.png) 
 
--------------------------
-changes as of 05-24-2017:
--------------------------
+**changes**  
+![](http://i.imgur.com/wRfJAU7.png) . ![](http://i.imgur.com/XwvQJpY.png)
 
-Zero Dark Matrix canidates --
-	changed sugg hover and select colors (default global text too hard to read)
-	
-	Changed suggest popup hover and selected background to deep purple 
-	(purple 1st picked to test if selector was  correct -- but I like it)
-	
-	::shadow div.suggest-box .suggest-box-content-item.source-code:hover,
-	::shadow ::shadow div.suggest-box .suggest-box-content-item.source-code:hover {
-		background-color: #720047 !important;
-		/* deep purple for hover -- #2f2f2f unreadable */
-		border: 1px solid rgba(0, 0, 0, 0) !important;
-	}
-	::shadow div.suggest-box .suggest-box-content-item.source-code.selected,
-	::shadow ::shadow div.suggest-box .suggest-box-content-item.source-code.selected {
-		color: #fff !important;
-		background-color: #720047 !important;
-		/* deep purple for selected */
-	}
-	
-	likewise on Elements panel (style side panel) 
-		unmatched css selectors too hard to read -- reason I changed to dark theme 
-		was because matched and unmatched too alike -- now hocked on dark
-		 
-	/* css side panel (un-matched selectors): default color un-readable  */
-	/*										  lime green may be overkill */
-	.simple-selector:not(.selector-matches) {
-		color: #04C526 !important;
-	}
-	
-	
-Personal Preferences 
+## how to inspect devtools html and css with devtools ##
 
-	lightened lineno -- I'm old school and code using both DW and devtools
-	
-	.CodeMirror-gutter-elt {
-		color: #888888 !important;
-		color: #b2b2b2 !important;	/* lineno just a bit lighter */
-	}
-	
-	changed comments color to dim pink -- comments are part my coding process
-	
-	.cm-comment {
-		color: rgba(255, 192, 203, 0.83) !important;	/* dim pink */
-		font-style: italic;
-	}	
+After going Dark for a couple weeks, got bug up my ??? to make some minor css tweaks.
 
-	console.log() info used a lot during testing
-	
-	/* lt blue #49a6d2  too un-readable --> skyblue/wheat */
-	#console-messages .console-info-level .console-message-text,
-	#console-messages .console-info-level .console-message-url {
-		color: wheat !important;
-	}
-	#console-messages .console-info-level .children div:hover * {
-		color: #359ccd !important;
-	}
-	#console-messages .console-info-level .section > .header .title {
-		color: skyblue !important;
-	}
-	
-	increased highlight fadeout -- I'think very slow and focused 
-	
-	.cm-highlight {				/* 3s -- 9s */
-		-webkit-animation: "fadeout-revised" 9s 0s !important;
-		outline: 1px solid #56795e;
-	}
-	
-------------------------------
-FORMATTING CSS with DW CC 2017
-------------------------------
+***How hard can that be?*** ... but where is devtools html and css?
 
-1. open canary.css and "apply source formatting"
+[see using devtools to inspect its own elements](https://github.com/flkeysgeek/devtools-themes/wiki/using-devtools-to-inspect-its-own-elements)
 
-2. save as canary.less in dev repo to get each selector on separate line
-
-	DW creates canary.css when canary.less saved (if no syntax errors)
-	
-	-AND-	Under site: CSS Preprocessors > General:
-			"Auto Compilation On File Save" --> checked
-			"SASS/SCSS Output file style"   --> expanded
-
-3. open canary.css in textpad and replace(/^  /g, '\n') -- save
+## installation ##
+TBD
