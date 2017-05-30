@@ -1,23 +1,26 @@
 {
 	"content_security_policy": "script-src 'self'; object-src 'self'",
+	"name": "devtools colors",
 	"description": "Change Developer Tools Colors",
-	"devtools_page": "devtools.colors.html",
+
 	"icons": {
 	  "16": "colors-16.png",
 	  "48": "colors-48.png",
 	  "128": "colors-128.png"
 	},
+    "browser_action": {
+        "default_icon": "colors-16.png",
+        "default_popup": "color_picker.html"
+	},
+    "devtools_page": "devtools.colors.html",
 	"background": {
-	"scripts": [
-	  "background.js"
-	],
-	"persistent": false
+		"scripts": ["background.js"]
 	},   
-	"key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgba6wwaJrHOeY5ILDkF3JZmsQ0BQ3p/ycRtrDXJgIBrdNYEHdrAljIe7weMt7vMY6jRsE4YGLcsv8p2ko7gUWxyMDrsvY94wGpcsLrEN2uhh/x3C/xPd1UOKMzWE0VaL9wnWZsgeJ6m8nkBfKYU0G19yuD+tQqCIzZs7Cm8l8qUF9+CiBc/r50SC5BfIU4QH5vzPfQlEcrnmIQkGVu6FnhDNLfbSUf03Em07PVLOFnfJHVCoFEU/fuIhrmSUsFRxkaku0zGGxXXftd+8KTDDM5xhhLXLQbmfb61HoKvjtlsIY3i3MtoYaz5I9WiGTVl7BBBhNzA89oA+RkuHuOr2RwIDAQAB",
+	
+    
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgba6wwaJrHOeY5ILDkF3JZmsQ0BQ3p/ycRtrDXJgIBrdNYEHdrAljIe7weMt7vMY6jRsE4YGLcsv8p2ko7gUWxyMDrsvY94wGpcsLrEN2uhh/x3C/xPd1UOKMzWE0VaL9wnWZsgeJ6m8nkBfKYU0G19yuD+tQqCIzZs7Cm8l8qUF9+CiBc/r50SC5BfIU4QH5vzPfQlEcrnmIQkGVu6FnhDNLfbSUf03Em07PVLOFnfJHVCoFEU/fuIhrmSUsFRxkaku0zGGxXXftd+8KTDDM5xhhLXLQbmfb61HoKvjtlsIY3i3MtoYaz5I9WiGTVl7BBBhNzA89oA+RkuHuOr2RwIDAQAB",
 	"manifest_version": 2,
 	"minimum_chrome_version": "18",
-	"name": "devtools colors",
-	
     "permissions": [ "tabs", "contextMenus", "debugger" ],
 	"optional_permissions": [ "debugger" ],
 	
