@@ -1,4 +1,0 @@
-http://developer.telerik.com/featured/12-extensions-apps-fill-gaps-devtools/
-https://github.com/sandipchitale/DevToolsApp
-https://github.com/google/devtoolsExtended
-https://github.com/johnjbarton/devtoolsExtended
