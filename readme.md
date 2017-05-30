@@ -26,4 +26,15 @@ After going Dark for a couple weeks, got bug up my ??? to make some minor css tw
 [see using devtools to inspect its own elements](https://github.com/flkeysgeek/devtools-themes/wiki/using-devtools-to-inspect-its-own-elements)
 
 ## installation ##
+
+- Enable DevTools experiments at `chrome://flags/#enable-devtools-experiments`
+- relaunch Chrome and open DevTools 
+- open `Settings > Experiments` and check *Allow UI themes* experiment.
+
 TBD
+
+## wiki -- what I learned ##
+
+explains how to modify any devtools theme and/or css including...
+
+how to inspect devtools with devtools to find css selectors
