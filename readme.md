@@ -31,7 +31,11 @@ After going Dark for a couple weeks, got bug up my ??? to make some minor css tw
 - relaunch Chrome and open DevTools 
 - open `Settings > Experiments` and check *Allow UI themes* experiment.
 
-TBD
+TBD ... ***under development***
+
+Leaning toward distributing changes via **devtools theme color picker** with  changes as default for **Zero Dark Matrix**
+
+Only plan on adding very few selectors to the color picker with ability to add more from the popup screen with instructions on how to find devtools selectors by inspecting devtools with devtools. 
 
 ## wiki -- what I learned ##
 
