@@ -1,4 +1,7 @@
-**Improve readability of devtools Zero Dark Matrix canary.css**
+## Overview ##
+- **Improve readability of devtools Zero Dark Matrix canary.css**   
+changes are minor
+- **Explain how to find and change other devtools selectors**
 
 ## theme changes ##
 - comment color changed to dim pink
