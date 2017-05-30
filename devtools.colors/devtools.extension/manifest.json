@@ -17,7 +17,8 @@
 	"manifest_version": 2,
 	"minimum_chrome_version": "18",
 	"name": "devtools colors",
-	"permissions": [ "tabs", "contextMenus", "debugger" ],
+	
+    "permissions": [ "tabs", "contextMenus", "debugger" ],
 	"optional_permissions": [ "debugger" ],
 	
 	"update_url": "https://clients2.google.com/service/update2/crx",
