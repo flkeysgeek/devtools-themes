@@ -1,0 +1,14 @@
+{
+   "RFOSetup_CreateNewAccount": {
+      "message": "Создать новую учетную запись RoboForm"
+   },
+   "RFOSetup_EnterAccountId": {
+      "message": "Email или имя пользователя:"
+   },
+   "Setup_ConfirmMasterPassword_Password_Text": {
+      "message": "Главный Пароль:"
+   },
+   "Setup_ConfirmMasterPassword_Prompt": {
+      "message": "Введите правильно свой Главный Пароль"
+   }
+}

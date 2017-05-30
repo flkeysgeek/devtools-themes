@@ -1,0 +1,14 @@
+{
+   "RFOSetup_CreateNewAccount": {
+      "message": "Criar nova conta do RoboForm"
+   },
+   "RFOSetup_EnterAccountId": {
+      "message": "Email ou ID de utilizador:"
+   },
+   "Setup_ConfirmMasterPassword_Password_Text": {
+      "message": "Palavra-passe Mestra"
+   },
+   "Setup_ConfirmMasterPassword_Prompt": {
+      "message": "Certifique-se de que sabe e  insira a sua Palavra-passe Mestra correctamente"
+   }
+}

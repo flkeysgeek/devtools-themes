@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>RoboForm Extension Options</title>
+	
+	<link rel="stylesheet" type="text/css" href="common.css">
+
+    <script type="text/javascript" src="base.js"></script>
+    <script type="text/javascript" src="storage.js"></script>
+    <script type="text/javascript" src="common.js"></script>
+    <script type="text/javascript" src="utils.js"></script>
+    <script type="text/javascript" src="crypto.js"></script>
+    <script type="text/javascript" src="options.js"></script>
+
+    <script type="text/javascript" src="localization.js"></script>
+</head>
+
+<body id='prefs_body' style="visibility: hidden;">
+<div id="options-container" class="options-container" style="display:none;">
+    <div class="options-table">
+        <div class="option-row checkbox-div">
+            <input type="checkbox" id="toolbar" class="option-checkbox"/>
+            <label for="toolbar" class="option-label">Show lower RoboForm toolbar</label>
+        </div>
+        <div class="option-row checkbox-div">
+            <input type="checkbox" id="popup-windows-toolbar" class="option-checkbox"/>
+            <label for="popup-windows-toolbar" class="option-label">Show lower RoboForm toolbar for popup windows</label>
+        </div>
+        <div class="option-row checkbox-div">
+            <input type="checkbox" id="popup" class="option-checkbox"/>
+            <label for="popup" class="option-label">Enable popup RoboForm toolbar</label>
+        </div>
+        <div class="option-row checkbox-div" id="horizontal-div" style="display:none;">
+            <input type="checkbox" id="horizontal" class="option-checkbox"/>
+            <label for="horizontal" class="option-label">Layout popup toolbar items horizontally</label>
+        </div>
+        <div class="option-row checkbox-div">
+            <input type="checkbox" id="focus" class="option-checkbox"/>
+            <label for="focus" class="option-label">Set focus to RoboForm search box automatically</label>
+        </div>
+        <div class="option-row">
+            <input type="button" id="options-dialog" value="More Options..."/>
+        </div>
+    </div>
+</div>
+
+
+<div id="message" class="message" style="display:none; white-space:pre;">
+</div>
+
+<!-- multifile -->
+<div id="opt_content_wrapper">
+    <div id="opt_header">
+        <img alt="options" width="32" height="32" src="robo32.png"/>
+        <label id="opt_username_label">RoboForm Options - </label><br/>
+    </div>
+
+    <div id="opt_content_wrapper1">
+        <!--DIALOG WITH BORDERS -->
+        <div id="opt_div_dialog_section">
+            <!--LEFT DIV MAIN MENU WITH BORDERS-->
+            <div id='prefs_menu'></div>
+        </div>
+
+        <div id="opt_div_content_section">
+        
+            <!-- Account TAB -->
+            <div id='account' class="rf_options_div">
+                <div class="opt_section_caption_div">
+                    <label id="account_label">Account</label><br/>
+                </div>
+                <div class="opt_section_div" id="Div1">
+                    <label id="accountname_label"></label>
+                    <a href="#" id="accountid_link">n/a</a>
+                </div>
+                <div id="opt_start_change_master_password_buttons_div">
+                    <div id="opt_start_change_master_password_header_text"></div>
+                    <input type="button" class="round_btn1" id="opt_start_change_master_password_change"
+                           value="Change Account Password"/>
+                </div>
+
+                <div id="opt_change_master_password_div">
+                    <div id="opt_change_master_password_header_div">
+                        <div id="opt_change_master_password_header_text"></div>
+                        <div id="opt_start_change_master_password_email"></div>
+                    </div>
+                    <div id="opt_change_master_password_content_div">
+                        <div class="opt_change_master_password_content_input">
+                            <label id="opt_change_master_password_current_label"
+                                   for="opt_change_master_password_current_input"></label>
+                            <input type="password" id="opt_change_master_password_current_input" value=""/>
+                        </div>
+                        <div class="opt_change_master_password_content_input">
+                            <label id="opt_change_master_password_new_label"
+                                   for="opt_change_master_password_new_input"></label>
+                            <input type="password" id="opt_change_master_password_new_input" value=""/>
+                        </div>
+                        <div class="opt_change_master_password_content_input">
+                            <label id="opt_change_master_password_confirm_label"
+                                   for="opt_change_master_password_confirm_input"></label>
+                            <input type="password" id="opt_change_master_password_confirm_input" value=""/>
+                        </div>
+                    </div>
+                    <div id="opt_change_master_password_footer_div">
+                        <div id="opt_change_master_password_buttons_div">
+                            <input type="button" class="round_btn1" id="opt_change_master_password_change"
+                                   value="Change"/>
+                        </div>
+                        <div id="opt_change_master_password_error_div"></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- SECUTIRY TAB -->
+            <div id='security' class="rf_options_div">
+                <div class="opt_section_caption_div">
+                    <label id="security_label">Security</label><br/>
+                </div>
+                <div class="opt_section_div checkbox-div">
+                    <input type='checkbox' id='rf_cachemp_onbrowser_close_chk' checked/>
+                    <label id="cachemp_onbrowser_close_label" for='rf_cachemp_onbrowser_close_chk'></label><br/>
+                </div>
+                <div class="opt_section_div" id="rf_prefs_autolog_div">
+                    <label id="rf_logoff_label" for='rf_timeout_select'></label>
+                    <input id="logoff_minutes_input" min="0" max="99999" type="number" step="1" value="0"/>
+                </div>
+                <label id="rf_logoff_info"></label>
+
+            </div>
+            
+            <!-- AUTOSAVE TAB -->
+            <div id='rf_autosave_options' class="rf_options_div">
+                <div class="opt_section_caption_div">
+                    <label id="rf_autosave_options_lbl">AutoSave</label><br/>
+                </div>
+                <div class="opt_section_div checkbox-div" id="rf_prefs_notifications_div">
+                    <input type='checkbox' id='rf_show_auto_savebar_chk' checked/>
+                    <label id="rf_show_bar_label" for='rf_show_auto_savebar_chk'></label><br/>
+                </div>
+                <div class="opt_section_div checkbox-div">
+                    <input type='checkbox' id='rf_alt_click_forces_autosave_chk' checked/>
+                    <label id="rf_alt_click_forces_autosave_label" for='rf_alt_click_forces_autosave_chk'></label><br/>
+                </div>
+                <div class="opt_section_div checkbox-div">
+                    <input type='checkbox' id='rf_shift_enter_forces_autosave_chk' checked/>
+                    <label id="rf_shift_enter_forces_autosave_label" for='rf_shift_enter_forces_autosave_chk'></label><br/>
+                </div>
+            </div>
+
+
+            <!-- FORM FILLING -->
+            <div id='form_fill' class="rf_options_div">
+                <div class="opt_section_caption_div">
+                    <label id="form_fill_label">FormFill</label><br/>
+                </div>
+                <div class="opt_section_div checkbox-div">
+                    <input type='checkbox' id='rf_highlight_filledflds_chk' checked/>
+                    <label id="rf_highlight_filled_lbl" for='rf_highlight_filledflds_chk'></label><br/>
+                </div>
+                <div class="opt_section_div checkbox-div">
+                    <input type='checkbox' id='rf_fill_submit_matching_chk' checked/>
+                    <label id="rf_fill_submit_matching_lbl" for='rf_fill_submit_matching_chk'></label><br/>
+                </div>
+            </div>
+
+            <!-- SEARCH PAGE -->
+            <div id='search' class="rf_options_div">
+                <div class="opt_section_caption_div">
+                    <label id="search_label">Search</label><br/>
+                </div>
+                <div class="opt_section_div checkbox-div">
+                    <input type='checkbox' id='rf_roboform_search_engine_chk' checked/>
+                    <label id="rf_roboform_search_engine_lbl" for='rf_roboform_search_engine_chk'></label><br/>
+                </div>
+                <div class="opt_section_div checkbox-div">
+                    <input type='checkbox' id='rf_bing_search_engine_chk' checked/>
+                    <label id="rf_bing_search_engine_lbl" for='rf_bing_search_engine_chk'></label><br/>
+                </div>
+                <div class="opt_section_div checkbox-div">
+                    <input type='checkbox' id='rf_google_search_engine_chk' checked/>
+                    <label id="rf_google_search_engine_lbl" for='rf_google_search_engine_chk'></label><br/>
+                </div>
+                <div class="opt_section_div checkbox-div">
+                    <input type='checkbox' id='rf_yahoo_search_engine_chk' checked/>
+                    <label id="rf_yahoo_search_engine_lbl" for='rf_yahoo_search_engine_chk'></label><br/>
+                </div>
+                <div class="opt_section_div checkbox-div">
+                    <input type='checkbox' id='rf_ebay_search_engine_chk' checked/>
+                    <label id="rf_ebay_search_engine_lbl" for='rf_ebay_search_engine_chk'></label><br/>
+                </div>
+                <div class="opt_section_div checkbox-div">
+                    <input type='checkbox' id='rf_amazon_search_engine_chk' checked/>
+                    <label id="rf_amazon_search_engine_lbl" for='rf_amazon_search_engine_chk'></label><br/>
+                </div>
+                <br/>
+            </div>
+
+            <!-- EXTENDED -->
+            <div id='extended' class="rf_options_div">
+                <div class="opt_section_div" id="rf_prefs_server_div">
+                    <label id="rf_server_label" for='rf_server_select'></label>
+                    <select id="rf_server_select">
+                        <option id="opt_com" value="https://online.roboform.com">roboform.com</option>
+                        <option id="opt_us" value="https://www.roboform.us:42001">roboform.us</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--LOADING IMAGE -->
+<div id="mp_div_loader">
+    <img width="50" height="12" src="ajax-loader-square-blue.gif"/>
+</div>
+
+<div id="options_page_mask"></div>
+<div id="options_progress_dialog">
+    <div id="options_progress_dialog_header"></div>
+    <div id="options_progress_dialog_progress">
+        <div id="options_progress_dialog_bar">
+            <div id="options_progress_dialog_label">0%</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

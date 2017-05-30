@@ -1,0 +1,1230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>RoboForm</title>
+    <link rel="stylesheet" type="text/css" href="popup.css"/>
+    <link rel="stylesheet" type="text/css" href="password-generator.css"/>
+    <link rel="stylesheet" type="text/css" href="setup.css"/>
+
+    <script type="text/javascript" src="images.js"></script>
+    <script type="text/javascript" src="base.js"></script>
+    <script type="text/javascript" src="rf-api-common.js"></script>
+    <script type="text/javascript" src="pwd-dict.js"></script>
+    <script type="text/javascript" src="utils.js"></script>
+    <script type="text/javascript" src="storage.js"></script>
+    <script type="text/javascript" src="common.js"></script>
+    <script type="text/javascript" src="localization.js"></script>
+    <script type="text/javascript" src="password-generator.js"></script>
+    <script type="text/javascript" src="view-id.js"></script>
+    <script type="text/javascript" src="popup.js"></script>
+    <script type="text/javascript" src="popup-nm.js"></script>
+    <script type="text/javascript" src="popup-sa.js"></script>
+    <script type="text/javascript" src="identity.js"></script>
+    <script type="text/javascript" src="rf_f1.js"></script>
+</head>
+
+<body>
+
+<div id="toolbar">
+    <div id="ui-items">
+    </div>
+    <div id="layout">
+        <div class="toolbar-button" id="layout-button">
+            <div class="icon" id="layout-content">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="message" class="message" style="display:none; white-space:pre;">
+</div>
+
+<!-- setup -->
+<div id="setup_notification_div" style="display:none;">
+    <div id="setup_logo"><img id="setup_logo_img" src="rf_circle1.png" /></div>
+    <div id="setup_welcome"></div>
+    <div id="setup_description"></div>
+
+    <div id="setup_bottom">
+        <div id="setup_notification_buttons">
+            <input type="button" id="start_nm_button" value="Use Local RoboForm"/>
+            <input type="button" id="download_button" value="Install now"/>
+        </div>
+        <div id="start_sa_link_container">
+            <a id="start_sa_link" href="#">Skip</a>
+        </div>
+    </div>
+</div>
+
+<!--MAIN CONTENT. Changes depending on current context-->
+<div id="mainscreen" style="display:none;"></div>
+
+<div id="templates" style="display:none;">
+
+<!--loading hourglass-->
+<div id="strip_loader_div">
+    <table id="loader_table" border="0">
+        <tr>
+            <td id="loader_text_td">loading...</td>
+            <td id="loader_logo_td"><img id="rf_loader_img" src="rf_circle1.png" /></td>
+        </tr>
+    </table>
+</div>
+
+<!--PASSWORD GENERATOR-->
+<div id="rfpassword_generator_div">
+
+    <!--MAIN TABLE-->
+    <div id="rfpassword_generator_main">
+        <div id="rfpassword_generator_text">
+            <label id="pwd_copy_lbl"></label>
+        </div>
+
+        <!--PASSWORD INPUT and Score-->
+        <div id="rf_passgen_input_left">
+            <div id="rf_passgen_input">
+                <!--<input readonly="readonly" class="rf_frameeditbox" id="rf_passgen_newpassw_txt" maxlength="99"
+                       type="text"/>-->
+                <select draggable="true" id="rf_passgen_newpassw_txt">
+                </select>
+            </div>
+            <!--Score Image and Text-->
+            <div id="rf_passgen_strength_div">
+                <div>
+                    <img alt="Score" id="rfpassword_generator_strenght_img" src="passaud_weak.ico"/>
+                </div>
+                <div>
+                    <label id="rfpassword_generator_strenght_lbl"></label>
+                </div>
+            </div>
+        </div>
+
+        <!--COPY TO CLIPBOARD   DISABLE FOR OPERA-->
+        <div id="rf_passgen_clipchk">
+            <input id="rf_pwd_generate_copycliboardp_chk" type="checkbox"/>
+            <label id="pwd_generate_copy_lbl" for="rf_pwd_generate_copycliboardp_chk"></label>
+        </div>
+    </div>
+
+    <div id="rf_passgen_details">
+        <details open="open">
+            <summary>Advanced settings</summary>
+
+            <hr id="rf_passgen_delimiter_top">
+
+            <!--ADVANCED OPTIONS TABLE-->
+            <div id="rfpassword_generator_adv_options">
+                <!--NUMBER Symbols -->
+                <div id="rf_passgen_num_symb">
+                    <label id="pwd_number_smbl_lbl"></label>
+                    <input class="rf_frameeditbox" id="rf_pwd_generate_number_symbols" min="1" max="99"
+                           type="number" step="1" value="8"/>
+                </div>
+
+                <!--EXCLUDE SIMILAR CHARACTERS-->
+                <div id="rf_passgen_similar">
+                    <input id="rf_passgen_similar_check" type="checkbox"/>
+                    <label id="rf_passgen_similar_label" for="rf_passgen_similar_check"></label>
+                </div>
+
+                <!--HEXADECIMAL-->
+                <div id="rf_passgen_hex">
+                    <input id="rf_passgen_hex_check" type="checkbox"/>
+                    <label id="rf_passgen_hex_label" for="rf_passgen_hex_check"></label>
+                </div>
+
+                <!--A-Z checkboxes-->
+                <div id="rf_passgen_az">
+                    <div id="rf_pwd_generate_az_wrapper">
+                        <input id="rf_pwd_generate_upper_chk" type="checkbox" checked="checked"/>
+                        <label id="rf_passgen_upper_lbl" for="rf_pwd_generate_upper_chk">A-Z</label>
+                        <input id="rf_pwd_generate_lower_chk" type="checkbox" checked="checked"/>
+                        <label id="rf_passgen_lower_lbl" for="rf_pwd_generate_lower_chk">a-z</label>
+                        <input id="rf_pwd_generate_digits_chk" type="checkbox" checked="checked"/>
+                        <label id="rf_passgen_digits_lbl" for="rf_pwd_generate_digits_chk">0-9</label>
+                        <input id="rf_pwd_generate_specialsymb_chk" type="checkbox" checked="checked"/>
+                    </div>
+                    <div id="rf_pwd_generate_special_chars_wrapper">
+                        <input id="rf_pwd_generate_special_chars" type="text" maxlength="10"/>
+                    </div>
+                </div>
+
+                <!--NUMBER Characters -->
+                <div id="rf_passgen_numdig">
+                    <label id="rf_passgen_numernumber_lbl"></label>
+                    <input id="rf_pwd_generate_number_digits" class="rf_frameeditbox" min="1" max="99"
+                           type="number" step="1" value="1"/>
+                </div>
+                <div id="rf_passgen_delimiter_bottom"></div>
+            </div>
+
+            <div id="err_passgener_msg">&nbsp;</div>
+        </details>
+    </div>
+
+    <!--BOTTOM TABLE--> <!--BUTTONS-->
+    <table id="rfpassword_generator_tablebuttons" border="0">
+        <tr>
+            <td id="rfpassword_generator_lefttop_td">
+                <input class="round_btn1" type="button" id="rf_passgen_fill_btn" value="Fill"/>
+            </td>
+            <td id="rfpassword_generator_centertop_td">
+                <input class="round_btn1" type="button" id="rf_passgen_generate_btn" value="Generate"/>
+            </td>
+            <td id="rfpassword_generator_righttop_td">
+                <input class="round_btn1" type="button" id="rf_passgen_copy_btn" value="Copy"/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!--CREATE ACCOUNT-->
+<!--VARIANT 1: Welcome to RoboForm text(after install)
+    - eMail input
+    - Master Password input
+    - Login with existing account link
+    - Next button
+-->
+<div id="rfsignupsection_div">
+    <!-- image and text-->
+    <table class="setup_screens_toptable" border="0">
+        <tr>
+            <td >
+                <table border="0" class="setup_screens_toptexttable">
+                    <tr><td class="setup_screens_toptext1" id="rf_sign_td_maintext1"></td></tr>
+                    <tr><td class="setup_screens_toptext2" id="rf_sign_td_maintext2"></td></tr>
+                </table>
+            </td>
+            <td class="setup_screens_topimage_td">
+                <img class="setup_screens_topimage" alt="RoboForm" src="rf_circle1.png" />
+            </td>
+        </tr>
+    </table>
+
+    <!--Middle Table EMAIL-->
+    <table class="setup_screens_middletable" border="0">
+        <!-- Text  Create Free Account-->
+        <tr>
+            <td id="rfsignupsection_middletable_step1_toptxt_td" colspan="2"></td>
+        </tr>
+        <!-- Text Email-->
+        <!-- Also show at the right Pwd Strength with rowspan=4 -->
+        <tr>
+            <td id="rfsignupsection_middletable_step1_emailtd" ></td>
+            <td id="rfsignupsection_pwd_strength_td" rowspan="4">
+                <!--Score Image and Text -->
+                <div id="rfsignupsection_strength_div">
+                    <div>
+                        <img alt="Score" id="rfsignupsection_strength_img" src="passaud_weak.ico"/>
+                    </div>
+                    <div>
+                        <label id="rfsignupsection_strength_lbl">Weak</label>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <!-- email input-->
+        <tr>
+            <td><input type="text" maxlength="150" id="fk_email" class="setup_screens_input" value="" tabindex="1" /></td>
+        </tr>
+        <!-- Text MasterPwd-->
+        <tr>
+            <td id="rf_sign_td_step1_pwd" ></td>
+        </tr>
+        <tr>
+            <td><input type="password" class="setup_screens_input" id="rf_sign_step1_pwd" maxlength="80" tabindex="2" value="" /></td>
+        </tr>
+        <!-- text about Master Password-->
+        <tr>
+            <td id="rf_sign_step1_text" colspan="2"></td>
+        </tr>
+        <tr>
+            <td id="err_signup_msg" colspan="2">&nbsp;</td>
+        </tr>
+    </table>
+
+    <!-- bottom buttons -->
+    <table class="setup_screens_buttonstable" border="0">
+        <!--separator-->
+        <tr><td colspan="4"><div class="setup_screens_separator_div"></div></td></tr>
+        <tr>
+            <!--Back button. Do NOT show it for Welcome screen-->
+            <td id="rfsignupsection_backtd_step1" class="setup_screens_back_td">
+                <input type="button" tabindex="4" class="setup_screens_button" value="Back" id="rfsignupsection_cancelbtn"/>
+            </td>
+            <!--Login to existing account link-->
+            <td id="rfsignupsection_linktd_step1">
+                <a href="#" id="rfsignupsection_bottom_loginlink" class="setup_screens_alink">Login with existing account</a>
+            </td>
+            <!--Progress indicator-->
+            <td class="setup_screens_progress_td">
+                <div id="rf_sign_progress_div_step1" class="setup_screens_progress_div">
+                    <img alt="..." class="save_progress_img" src="saveind.gif" />
+                </div>
+            </td>
+            <!--Next button-->
+            <td class="setup_screens_next_td">
+                <input type="button" tabindex="3" class="setup_screens_button" value="Next" id="rfsignupsection_nextbtn" disabled="disabled"/>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<!--Change Master Password-->
+<div id="change_master_password_div">
+    <table id="change_master_password_table" border="0" align="center">
+        <tr>
+            <td id="change_master_password_header_text"></td>
+            <td id="change_master_password_header_image_td">
+                <img alt="Change Password" id="change_master_password_header_image" src="password_dialog_figure.png"/>
+            </td>
+        </tr>
+    <tr><td colspan="2">
+        <div id="change_master_password_content_div">
+            <div class="change_master_password_content_input">
+                <label id="change_master_password_current_label" for="change_master_password_current_input"></label>
+                <input type="password" id="change_master_password_current_input" value=""/>
+            </div>
+            <div class="change_master_password_content_input">
+                <label id="change_master_password_new_label" for="change_master_password_new_input"></label>
+                <input type="password" id="change_master_password_new_input" value=""/>
+            </div>
+            <div class="change_master_password_content_input">
+                <label id="change_master_password_confirm_label" for="change_master_password_confirm_input"></label>
+                <input type="password" id="change_master_password_confirm_input" value=""/>
+            </div>
+        </div>
+    </td></tr>
+    <tr><td colspan="2">
+        <div id="change_master_password_footer_div">
+            <div id="change_master_password_error_title">RoboForm Policies were changed for this account:</div>
+            <div id="change_master_password_error_div"></div>
+            <div id="change_master_password_separator"></div>
+            <div id="change_master_password_progress">
+                <img alt="saving.." class="save_progress_img" src="saveind.gif"/>
+            </div>
+            <div id="change_master_password_buttons_div">
+                <input type="button" id="change_master_password_cancel" value="Cancel" />
+                <input type="button" id="change_master_password_change" value="Change"/>
+            </div>
+        </div>
+    </td></tr>
+    </table>
+</div>
+
+<!-- **CONFIRM Password for Account(normal) dialog**
+    - Master Password input
+    - Back/Next buttons
+-->
+<div id="confirm_accountpwd_div">
+    <!--TOP logo image and text-->
+    <table class="setup_screens_toptable" border="0">
+        <tr>
+            <td>
+                <table border="0" class="setup_screens_toptexttable">
+                    <tr><td class="setup_screens_toptext1" id="confirm_td_maintext1"></td></tr>
+                    <tr><td class="setup_screens_toptext2" id="confirm_td_maintext2"></td></tr>
+                </table>
+            </td>
+            <td class="setup_screens_topimage_td">
+                <img class="setup_screens_topimage" alt="RoboForm" src="password_dialog_figure.png" />
+            </td>
+        </tr>
+    </table>
+
+    <!--MIDDLE Table  Confirm Master Password-->
+    <table class="setup_screens_middletable" border="0">
+        <tr><td id="confirm_accountpwd_emaillabel"></td></tr>
+        <tr><td id="confirm_accountpwd_emailvalue"></td></tr>
+        <tr><td id="confirm_accountpwd_confirmpwdtitle"></td></tr>
+        <tr><td id="confirm_accountpwd_confirmpwdnotetxt"></td></tr>
+        <tr><td id="confirm_accountpwd_pwdlabel"></td></tr>
+        <tr><td><input type="password" id="confirm_accountpwd_pwd" class="setup_screens_input" tabindex="5" maxlength="80" value="" /></td></tr>
+        <tr><td id="confirm_accountpwd_error">&nbsp;</td></tr>
+    </table>
+
+    <!-- BOTTOM buttons-->
+    <table class="setup_screens_buttonstable" border="0">
+        <!--separator-->
+        <tr><td colspan="3"><div class="setup_screens_separator_div"></div></td></tr>
+        <tr>
+            <!--Back button -->
+            <td class="setup_screens_back_td">
+                <input type="button" tabindex="4"  class="setup_screens_button" value="Back" id="confirmPwd_BackBtn"/>
+            </td>
+            <!--Progress indicator-->
+            <td class="setup_screens_progress_td">
+                <div id="confirm_accountpwd_progress_div" class="setup_screens_progress_div">
+                    <img alt="..." class="save_progress_img" src="saveind.gif" />
+                </div>
+            </td>
+            <!--Next button-->
+            <td class="setup_screens_next_td">
+                <input tabindex="4" type="button" class="setup_screens_button" id="confirmPwd_NextBtn" value="Next" disabled="disabled" />
+            </td>
+        </tr>
+    </table>
+</div>
+<!-- end of CONFIRM MP dialog -->
+
+<!--ENTER Password for Account (unlock)-->
+<!-- - Password  input (switches to LOADING image)
+ - Login button
+ - Change Account Link
+-->
+<div id="enteraccountpwd_div">
+    <table id="enteraccountpwd_tbl" border="0" align="center">
+        <!-- top text as caption-->
+        <tr><td id="enteraccountpwd_topcaption_lbl">Enter Password</td></tr>
+        <!-- lock image-->
+        <tr><td id="enteraccountpwd_image_td"><img alt="Enter password" id="enteraccountpwd_middle_img" src="password_dialog_figure.png" /></td></tr>
+        <!-- for RoboForm account text-->
+        <tr><td id="enteraccountpwd_foraccount_lbl">for RoboForm Account:</td></tr>
+        <!-- account name-->
+        <tr><td id="enteraccountpwd_username_lbl"></td></tr>
+        <!-- error-->
+        <tr><td id="enteraccountpwd_error_lbl">&nbsp;</td></tr>
+        <!-- roboform.us warning message-->
+        <tr><td id="enteraccountpwd_rfus_test_lbl">&nbsp;</td></tr>
+        <!-- Password input SWITCH to  LOADING image, after clicking Login  button-->
+        <tr id="enteraccountpwd_pwd_tr">
+            <td id="enteraccountpwd_pwd_td"><input tabindex="1" id="enteraccountpwd_pwd_txt" type="password" maxlength="80" value="" /></td>
+        </tr>
+        <tr id="enteraccountpwd_loading_tr">
+            <td id="enteraccountpwd_loading_td"><img alt="entering..." src="loading_256_41.gif" /></td>
+        </tr>
+        <!-- Login button-->
+        <tr><td id="enteraccountpwd_login_td"><input tabindex="1" id="enteraccountpwd_login_btn" type="button" value="Login" /></td>
+        </tr>
+        <!--change new Account Link-->
+        <tr><td><a href="#" id="enteraccountpwd_changeaccount_link">Change Account</a></td></tr>
+    </table>
+</div>
+
+<!-- **LOGIN with existing account dialog**
+    - EMail/UserId  input
+    - Create new RoboForm account Link
+    - Back/Next buttons
+-->
+<div id="rfloginsection_div">
+    <!--logo image-->
+    <table class="setup_screens_toptable" border="0">
+        <tr>
+            <td>
+                <table border="0" class="setup_screens_toptexttable">
+                    <tr><td class="setup_screens_toptext1" id="rflogin_td_maintext1"></td></tr>
+                    <tr><td class="setup_screens_toptext2" id="rflogin_td_maintext2"></td></tr>
+                </table>
+            </td>
+            <td class="setup_screens_topimage_td">
+                <img class="setup_screens_topimage" alt="RoboForm" src="rf_circle1.png" />
+            </td>
+        </tr>
+    </table>
+    <!--Middle controls-->
+    <table class="setup_screens_middletable" border="0">
+        <!--user id label-->
+        <tr><td id="rfloginsection_userid_td"></td></tr>
+        <!--user id input-->
+        <tr>
+            <td>
+                <input autofocus="autofocus" class="setup_screens_input" tabindex="1" type="text" maxlength="240" value="" id="rf_userid_input_fk" />
+            </td>
+        </tr>
+        <!--create new Account Link-->
+        <tr>
+            <td id="rfloginsection_createaccount_td">
+                <a href="#" class="setup_screens_alink" id="rfloginsection_createaccount_link">Create New RoboForm account</a>
+            </td>
+        </tr>
+        <!--error message-->
+        <tr><td id="td_wrong_creds_msg"></td></tr>
+        <tr>
+            <td align="left" colspan="1" id="tdloginsection_session_txt">
+                * The RoboForm Chrome extension requires cookies. To enable, make sure that your 'Cookies' setting is set to 'Don't block cookies'.&nbsp;&nbsp;
+                <!--<a href="#" id="rfloginsection_setupcookies_link"> How to setup...</a>-->
+            </td>
+        </tr>
+    </table>
+
+    <!--Bottom table: separator and  CreateAccount, loader gif-->
+    <table class="setup_screens_buttonstable" border="0">
+        <!--separator-->
+        <tr><td colspan="3"><div class="setup_screens_separator_div"></div></td></tr>
+        <tr>
+            <!--Back button -->
+            <td id="login_emailsection_backtd" class="setup_screens_back_td">
+                <input type="button" tabindex="4"  class="setup_screens_button" value="Back" id="login_emailsection_backbtn"/>
+            </td>
+            <!--Progress indicator-->
+            <td class="setup_screens_progress_td">
+                <div id="rfloginsection_save_indicator_div" class="setup_screens_progress_div">
+                    <img alt="..." class="save_progress_img" src="saveind.gif" />
+                </div>
+            </td>
+            <!--Next button-->
+            <td class="setup_screens_next_td">
+                <input tabindex="4" type="button" class="setup_screens_button" id="login_emailsection_nextbtn" value="Next" disabled="disabled" />
+            </td>
+        </tr>
+    </table>
+</div>
+<!-- end of login dialog -->
+
+<!-- **LOGIN with existing account dialog(Step 2)**
+    - Password  input
+    - Back/Next buttons
+-->
+<div id="login_pwdsection_div">
+    <!--top logo image and text-->
+    <table class="setup_screens_toptable" border="0">
+        <tr>
+            <td>
+                <table border="0" class="setup_screens_toptexttable">
+                    <tr><td class="setup_screens_toptext1" id="entercreate_accountpwd_maintext1"></td></tr>
+                    <tr><td class="setup_screens_toptext2" id="entercreate_accountpwd_maintext2"></td></tr>
+                </table>
+            </td>
+            <td class="setup_screens_topimage_td">
+                <img class="setup_screens_topimage" alt="RoboForm" src="password_dialog_figure.png" />
+            </td>
+        </tr>
+    </table>
+
+    <!-- MIDDLE table with email text in pwd input-->
+    <table class="setup_screens_middletable" border="0">
+        <!-- enter password text -->
+        <tr><td id="login_pwdsection_entertxt_td"></td></tr>
+        <!-- Email text-->
+        <tr><td id="login_pwdsection_emailtxt_td"></td></tr>
+        <!-- Master Password input -->
+        <tr><td><input type="password" class="setup_screens_input" id="login_pwdsection_pwdinput" maxlength="80" tabindex="2" value="" /></td></tr>
+        <!-- Error message -->
+        <tr><td id="login_pwdsection_errmsg">&nbsp;</td></tr>
+    </table>
+
+    <!-- bottom buttons-->
+    <table class="setup_screens_buttonstable" border="0">
+        <!--separator-->
+        <tr><td colspan="3"><div class="setup_screens_separator_div"></div></td></tr>
+        <tr>
+            <!--Back button -->
+            <td class="setup_screens_back_td">
+                <input type="button" tabindex="4"  class="setup_screens_button" value="Back" id="login_pwdsection_backbtn"/>
+            </td>
+            <!--Progress indicator-->
+            <td class="setup_screens_progress_td">
+                <div id="login_pwdsection_progress_div" class="setup_screens_progress_div">
+                    <img alt="..." class="save_progress_img" src="saveind.gif" />
+                </div>
+            </td>
+            <!--Next button-->
+            <td class="setup_screens_next_td">
+                <input tabindex="4" type="button" class="setup_screens_button" id="login_pwdsection_nextbtn" value="Next" disabled="disabled" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!--ONE TIME PASSWORD -->
+<div id="rf_otp_section_div">
+    <div id="rf_otp_caption_div">
+        <label id="rf_otp_caption_lbl">One Time Password</label>
+    </div>
+    <!-- top image and main text -->
+    <div id="rf_otp_image_div" align="center">
+        <img id="rf_otp_mainimage" src="otp_image.png" />
+    </div>
+    <div id="rf_otp_toptext_div">
+        <label id="rf_otp_toptext_lbl"></label>
+    </div>
+    <!-- check mail text -->
+    <div id="rf_otp_checkmail_div">
+        <label id="rf_otp_checkmail_lbl"></label>
+    </div>
+    <!--OTP input and label -->
+    <div id="rf_otp_password_div">
+        <label id="rf_otp_pwd_lbl" for="rf_otp_pwd_textbox"></label>
+        <input type="text" id="rf_otp_pwd_textbox"/>
+    </div>
+    <!-- memorize chechkbox and text -->
+    <div id="rf_otp_memorize_div">
+        <input type="checkbox" checked id="rf_otp_memorize_chk"/>
+        <label for="rf_otp_memorize_chk" id="rf_otp_memorize_lbl"></label>
+    </div>
+    <!-- ERROR MESSAGE TD -->
+    <div id="rf_otp_errmsg"></div>
+    <!-- separator -->
+    <div id="rf_otp_separator"></div>
+    <!-- progress indicator -->
+    <div id="rf_otp_save_indicator">
+        <img class="save_progress_img" src="saveind.gif" />
+    </div>
+    <!-- bottom buttons -->
+    <div id="rf_otp_buttons">
+        <input type="button" class="round_btn1" value="Cancel" id="rf_otp_cancelbtn"/>
+        <input type="button" class="round_btn1" value="Submit" id="rf_otp_submitbtn"/>
+    </div>
+</div>
+
+<!--OBJECT  delete-->
+<div id="rfobject_delete_section_div">
+    <table id="rfobject_delete_section_table" border="0">
+        <tr>
+            <td id="rfobject_delete_img_td" align="center">
+                <img id="rfobject_delete_img" src="help_support128.png"/>
+            </td>
+            <td>
+                <label id="rfobject_delete_section_lbl"></label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" id="td_objdelete__err_msg"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="match_separator_line"></div>
+            </td>
+        </tr>
+        <!-- bottom buttons -->
+        <tr>
+            <td colspan="2" align="right">
+                <div id="rfdeleteobj_pr_indicator" class="div_save_indicator">
+                    <img class="save_progress_img" src="saveind.gif"/></div>
+                <input id="rfobject_delete_ok_btn" class="round_btn1" tabindex="1" value="Ok" type="button"/>
+                <input id="rfobject_delete_cancel_btn" class="round_btn1" tabindex="2" value="Cancel" type="button"/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!--SESSION TIMEOUT -->
+<div id="session_timeout_div">
+    <table id="rfsessexp_table" border="0">
+        <tr id="rfsessexp_tr_top">
+            <td id="rfsessexp_td_top1" align="center"><img id="session_expire_img" src="session_exp.png"/></td>
+            <td><label id="session_expire_lbl"></label></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="match_separator_line"></div>
+            </td>
+        </tr>
+        <tr>
+            <td id="rfsessexp_td_btm" colspan="2" align="center">
+                <input type="button" class="round_btn1" value="Close" id="rf_session_expire_closebtn"/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!--CREATE FOLDER -->
+<div id="rffolder_create_div">
+    <table id="createfolder_section_table" border="0">
+        <tr>
+            <td nowrap="true"><label id="createfolder_lbl">Folder name:</label>&nbsp;&nbsp;</td>
+            <td align="right" width="100%"><input id="createfolder_input" maxlength="255" type="text"/></td>
+        </tr>
+        <tr>
+            <td colspan="2" id="createfolder_err_msg"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="match_separator_line"></div>
+            </td>
+        </tr>
+        <!-- bottom buttons -->
+        <tr>
+            <td colspan="2" align="right">
+                <div id="createfolder_pr_indicator" class="div_save_indicator"><img class="save_progress_img"
+                                                                                    src="saveind.gif"/></div>
+                <input id="createfolder_ok_btn" class="round_btn1" value="OK" type="button"/>
+                <input id="createfolder_cancel_btn" class="round_btn1" value="Cancel" type="button"/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!--FOLDER Rename-->
+<div id="rffolder_rename_div">
+    <table id="renamefolder_section_table" border="0">
+        <tr>
+            <td nowrap="true"><label id="renamefolder_lbl">Rename to:</label>&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="right" width="100%"><input maxlength="255" id="renamefolder_input" tabindex="1" type="text"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1" id="renamefolder_err_msg"></td>
+        </tr>
+        <tr>
+            <td colspan="1">
+                <div class="match_separator_line"></div>
+            </td>
+        </tr>
+        <!-- bottom buttons -->
+        <tr>
+            <td colspan="1" align="right">
+                <div id="renamefolder_pr_indicator" class="div_save_indicator"><img class="save_progress_img"
+                                                                                    src="saveind.gif"/></div>
+                <input id="renamefolder_ok_btn" class="round_btn1" tabindex="2" value="OK" type="button"/>
+                <input id="renamefolder_cancel_btn" class="round_btn1" tabindex="3" value="Cancel" type="button"/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!--MASTER PASSWORD-->
+<div id="mastpwdEnter_div">
+    <!--dialog main text and image-->
+    <div id="mastpwdEnter_sword_div" align="center">
+        <img id="mastpwdEnter_sword_img" src="master_pwd_sword.png"/>
+    </div>
+    <div id="mastpwdEnter_maintext_div"></div>
+    <!-- label Password: width=80px and password input-->
+    <div id="mastpwdEnter_pwdinput_div">
+        <label for="mastpwdEnter_input" id="mastpwdEnter_pwd_label"></label>
+        <input id="mastpwdEnter_input" type="password" value=""/>
+    </div>
+    <!-- cache master password checkbox-->
+    <div id="mastpwdEnter_chk_div">
+        <input type="checkbox" checked id="rf_cache_mpwd_until_logut_chk"/>
+        <label for="rf_cache_mpwd_until_logut_chk" id="rf_cache_mp_lbl"></label>
+    </div>
+    <!-- ERROR MESSAGE TD -->
+    <div id="mastpwdEnter_errormsg"></div>
+    <!-- separator -->
+    <div id="mastpwdEnter_separator"></div>
+    <!-- progress indicator -->
+    <div id="mastpwdEnter_pr_indicator">
+        <img class="save_progress_img" src="saveind.gif"/>
+    </div>
+    <!-- buttons -->
+    <div id="mastpwdEnter_buttons_div">
+        <input type="button" class="round_btn1" value="Submit" id="mastpwdEnter_Submitbtn"/>
+        <input type="button" class="round_btn1" value="Cancel" id="mastpwdEnter_cancelbtn"/>
+    </div>
+</div>
+
+<!--MASTER PASSWORD CREATE-->
+<div id="rfcreate_mpsection_div">
+    <table id="rfmasterpass_create_table" border="0">
+        <!-- Main dialog text-->
+        <tr>
+            <td colspan="2">
+                <table id="rf_createmp_top_table">
+                    <tr>
+                        <td id="rf_createmp_sword_td"><img id="rf_createmp_sword" src="master_pwd_sword.png"/></td>
+                        <td id="rf_creatempdialog_text_td"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- Master Pwd-->
+        <tr>
+            <td id="rf_createmp_pass_txt" nowrap></td>
+            <td align="right">
+                <input id="rf_createmasterpass_input" type="password" maxlength="80" value=""/>
+            </td>
+        </tr>
+        <!-- Confirm Master Pwd-->
+        <tr>
+            <td id="rf_createmp_pass_txt_confirm" nowrap></td>
+            <td align="right">
+                <input id="rf_createmasterpass_input_conf" type="password" maxlength="80" value=""/>
+            </td>
+        </tr>
+        <!-- error msg-->
+        <tr>
+            <td colspan="2" id="td_wrong_createmastpass_msg"></td>
+        </tr>
+        <!-- separator-->
+        <tr>
+            <td colspan="2">
+                <div id="rf_createmp_pass_separator" class="match_separator_line"></div>
+            </td>
+        </tr>
+        <!-- buttons -->
+        <tr>
+            <td nowrap colspan="2" align="right" id="rf_mpcreatedialog_btns_td">
+                <div id="mastpass_create_save_indicator" class="div_save_indicator">
+                    <img class="save_progress_img" src="saveind.gif"/>
+                </div>
+                <input type="button" class="round_btn1" id="rf_mp_create_submitbtn" value="Submit"/>
+                <input type="button" class="round_btn1" id="rf_mp_create_cancelbtn" value="Cancel"/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!--LOGIN/BOOKMARK/SAFENOTE Editor-->
+<div id="logineditor_div">
+    <!-- GOTO Url -->
+    <div id="logineditor_urls_div">
+        <table id="logineditor_urls_table" border="0">
+            <tr>
+                <td id="logineditor_gotourllbl_td">Go To URL</td>
+            </tr>
+            <tr>
+                <td><input type="text" id="logineditor_gotourl_text" value=""/></td>
+            </tr>
+            <!--<tr><td colspan="2" id="edit_pass__err_msg"></td></tr>-->
+        </table>
+    </div>
+
+    <!-- Fields -->
+    <div id="logineditor_fields_div">
+        <!--passcards fields section -->
+        <fieldset id="logineditor_fields_fieldset">
+            <!--passcard object icon and *Fields* text-->
+            <legend id="logineditor_fields_legend"></legend>
+            <!-- will add Add, Delete buttons for add/delete passcard fields
+            <table id="rf_passcard_fieldsactions_table" cellpadding="0" cellspacing="0" border="1" >
+                <tr>
+                    <td id="rf_passcard_fieldsactions_addfield_td" align="center">
+                        <img id="rf_passcard_fieldsactions_addfield_img" alt="Add Field" title="Add Field" width="16" height="16"  src="images/add_submenu.png" />
+                    </td>
+                    <td id="rf_passcard_fieldsactions_deletefield_td" align="center">
+                        <img id="rf_passcard_fieldsactions_deletefield_img" alt="Delete Field" title="Delete Field" width="15" height="15"  src="images/deleterfobj_dis.png" />
+                    </td>
+                </tr>
+            </table>-->
+            <!--DIV for adding field: Type combo, Name input, Ok,Cancel btns
+            <div id="rf_passcard_fieldsactions_div" style="display:none;">
+                <table cellpadding="0" cellspacing="0" border="1" id="rf_passcard_fieldsactionsAdd_table">
+                    <tr>
+                        <td>Type:</td>
+                        <td><select id="rf_passcard_fieldsactions_typecombo">
+                            <option value="1" class="rf_passcard_fieldsactions_types" selected="true">Text</option>
+                            <option value="2" class="rf_passcard_fieldsactions_types">Pwd</option></select>
+                        </td>
+                        <td>
+                            <label id="rf_passcard_fieldsactionsAdd_name_lbl">Name:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="rf_passcard_fieldsactions_nametxt" />
+                        </td>
+                        <td align="right">
+                            <img id="rf_passcard_fieldsactionsAdd_Okbtn" alt="OK" title="OK" width="15" height="15"  src="images/ok_btn.png" />
+                        </td>
+                        <td align="right">
+                            <img id="rf_passcard_fieldsactionsAdd_cancelbtn" alt="Cancel" title="Cancel" width="15" height="15"  src="images/cancel_btn.png" />
+                        </td>
+                    </tr>
+                </table>
+            </div>-->
+            <!--inner fieldset, ir we have many fields, then scrollbar will appear. This fieldset has fixed height.-->
+            <fieldset id="logineditor_fields_innerset">
+                <legend></legend>
+                <table id="logineditor_fields_table"></table>
+            </fieldset>
+        </fieldset>
+    </div>
+
+    <!-- Note textarea -->
+    <div id="logineditor_note_div">
+        <table id="logineditor_note_table" border="0">
+            <tr>
+                <td id="logineditor_notelbl_td">Note</td>
+            </tr>
+            <tr>
+                <td id="editpass_note_td">
+                    <textarea id="logineditor_note_textarea"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- bottom buttons -->
+    <div id="logineditor_buttons_div">
+        <table id="logineditor_buttons_table" border="0">
+            <tr>
+                <td>
+                    <div class="match_separator_line"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <div id="logineditor_pr_indicator" class="div_save_indicator"><img class="save_progress_img"
+                                                                                       src="saveind.gif"/></div>
+                    <input id="logineditor_save_btn" class="round_btn1" value="Save" type="button"/>
+                    <input id="logineditor_cancel_btn" class="round_btn1" value="Cancel" type="button"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!--MANUAL SAVE DIALOG -->
+<div id="manualsaveDlg_div">
+    <!--top section:  Radio buttons, and New Folder btn -->
+    <div id="manualsaveDlg_top_div">
+        <table id="manualsaveDlg_top_tbl" border="0">
+            <tr id="manualsaveDlg_radio_top_row">
+                <!--Login=1 Bookmark=2 -->
+                <td>
+                    <input type="radio" id="manualsaveDlg_radio_login" name="manualsaveDlg" checked value="1"/>
+                    <label for="manualsaveDlg_radio_login" id="manualsaveDlg_lbl_login"></label>
+                </td>
+                <td>
+                    <input type="radio" id="manualsaveDlg_radio_bookmark" name="manualsaveDlg" value="2"/>
+                    <label for="manualsaveDlg_radio_bookmark" id="manualsaveDlg_lbl_bookmark"></label>
+                </td>
+                <td align="right">
+                    <input id="manualsaveDlg_createfld_btn" class="round_btn1" type="button" value="New Folder..."/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--middle section:  Name, input and folders treeview -->
+    <table id="manualsaveDlg_middle_table" border="0">
+        <tr id="manual_save_dlg_nametxt_row">
+            <td colspan="2" align="left"><label id="manualsaveDlg_name_lbl"></label></td>
+        </tr>
+        <tr id="manual_save_dlg_input_row">
+            <td colspan="2"><input maxlength="200" id="manualsaveDlg_name_textbox" type="text"/></td>
+        </tr>
+        <!-- TREEVIEW   -->
+        <tr id="manual_save_dlg_section_tree_row">
+            <td colspan="2">
+                <div class="treeview" id="manual_save_dlg_treeview"></div>
+            </td>
+        </tr>
+
+        <!--    NEW FOLDER PART   -->
+        <tr id="manual_save_dlg_createfldsection_maintr" style="display:none;">
+            <td colspan="2">
+                <table id="manual_save_dlg_createfldsection_table" border="0">
+                    <tr>
+                        <td colspan="2" align="left"><label id="manualsaveDlg_createfld_namelbl"></label></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input id="manual_save_dlg_createfldsection_nametxt" maxlength="100"
+                                               type="text"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" id="manual_save_dlg_createfldsection_err_msg"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div id="manual_save_dlg_createfldsection_s1" class="match_separator_line"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="right">
+                            <div id="manual_save_dlg_createfldsection_progress">
+                                <img class="save_progress_img" src="saveind.gif"/>
+                            </div>
+                            <input id="manual_save_dlg_createfldsection_okbtn" class="round_btn1" value="OK" type="button"/>
+                            <input id="manual_save_dlg_createfldsection_cancelbtn" class="round_btn1" value="Cancel" type="button"/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!--  END OF NEW FOLDER PART   -->
+
+        <!--OBJECT unblock-->
+        <tr id="rfobject_unblock_section_div" style="display:none;">
+            <td colspan="2">
+                <table id="rfobject_unblock_section_table" border="0">
+                    <tr>
+                        <td id="rfobject_unblock_img_td" align="center">
+                            <img id="rfobject_unblock_img" src="help_support128.png"/>
+                        </td>
+                        <td>
+                            <label id="rfobject_unblock_section_lbl"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" id="unblock_err_msg"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="match_separator_line"></div>
+                        </td>
+                    </tr>
+                    <!-- bottom buttons -->
+                    <tr>
+                        <td colspan="2" align="right">
+                            <div id="rfunblockobj_pr_indicator" class="div_save_indicator">
+                                <img class="save_progress_img" src="saveind.gif"/></div>
+                            <input id="rfobject_unblock_ok_btn" class="round_btn1" tabindex="1" value="Ok"
+                                   type="button"/>
+                            <input id="rfobject_unblock_cancel_btn" class="round_btn1" tabindex="2" value="Cancel"
+                                   type="button"/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" id="manual_save_dlg_err_msg"></td>
+        </tr>
+        <!-- PROGRESS Indicator and BUTTONS   -->
+        <tr id="manual_save_dlg_btns_row">
+            <td id="manual_save_dlg_unblock_td">
+                <input id="manual_save_dlg_unblock_button" class="round_btn1" value="Unblock" type="button"/>
+            </td>
+            <td align="right">
+                <div id="manual_save_dlg_pr_indicator"><img class="save_progress_img" src="saveind.gif"/></div>
+                <input id="manual_save_dlg_btn_OK" type="button" class="round_btn1" value="Save"/>
+                <input id="manual_save_dlg_btn_Cancel" type="button" class="round_btn1" value="Cancel"/>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+<!--CREATE OBJECT View-->
+<div id="rfcreate_object_dialog">
+    <table id="rfcreateobj_table" border="0">
+        <!-- ICON AND CREATE NEW OBJECT TEXT -->
+        <tr>
+            <td id="rf_createobject_image_td"></td>
+            <td id="rf_createobject_text_td"></td>
+        </tr>
+    </table>
+    <table id="rfcreateobj_table2" border="0">
+        <!-- NEW NAME LABEL CREATE NEW OBJECT NAME INPUT -->
+        <tr>
+            <td colspan="2" id="rf_createobj_newname_td"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input id="rf_createobj_input" maxlength="255" value=""/>
+            </td>
+        </tr>
+        <!-- NEW OBJECT NOTE FIELD: SAFENOTE-->
+        <tr id="rf_createobj_note_tr">
+            <td colspan="2" id="rf_createobj_notelbl_td"></td>
+        </tr>
+        <tr id="rf_createobj_note_tr2">
+            <td colspan="2">
+                <textarea id="rf_createobj_textarea"></textarea>
+            </td>
+        </tr>
+        <!-- COUNTRIES: CONTACT, IDENTITY  -->
+        <tr id="rf_createobj_countries_tr">
+            <td colspan="2" id="rf_createobj_countrieslbl_td">Country</td>
+        </tr>
+        <tr id="rf_createobj_countries_tr2">
+            <td colspan="2">
+                <select id="rf_createobj_countries_select"></select>
+            </td>
+        </tr>
+        <!-- ERROR MESSAGE TD -->
+        <tr>
+            <td colspan="2" id="td_wrong_objectname_msg"></td>
+        </tr>
+
+    </table>
+
+    <!-- BOTTOM table: Progress and BUTTONS -->
+    <table id="rfcreateobj_table3" border="0">
+        <tr>
+            <td align="right" colspan="2">
+                <div id="rfnewobject_pr_indicator"><img class="save_progress_img" src="saveind.gif"/></div>
+                <input id="rfobject_create_ok_btn" class="round_btn1" value="OK" type="button"/>
+                <input id="rfobject_create_cancel_btn" class="round_btn1" value="Cancel" type="button"/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!--Identity View-->
+<div id="rfIdentitysection_div">
+    <table id="rfIdentitysection_table" border="0">
+        <tr>
+            <td>
+                <div id="page_content_div">
+                    <div id="identityDiv_tabs"></div>
+                    <div id="ff_content"></div>
+                </div>
+            </td>
+        </tr>
+        <!-- Progress and BUTTONS -->
+        <tr>
+            <td align="right">
+                <div id="rfIdentitysection_prg_ind" class="div_save_indicator">
+                    <img class="save_progress_img" src="saveind.gif"/>
+                </div>
+                <input type="button" class="round_btn1" value="OK" id="rfIdentitysection_OKBtn"/>
+                <input type="button" class="round_btn1" value="Cancel" id="rfIdentitysection_CancelBtn"/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</div>
+
+<!-- Search Box section -->
+<div id="search_bar_dropdown" style="display:none;">
+    <div id="search_bar_bing_wrapper" class="search_dropdown_default_item_wrapper">
+        <img class="toolbar-search-result" src="search_tc.png"/>
+        <div id="search_bar_bing" class="search_dropdown_item"></div>
+    </div>
+    <div id="search_bar_yahoo_wrapper" class="search_dropdown_default_item_wrapper">
+        <img class="toolbar-search-result" src="search_tc.png"/>
+        <div id="search_bar_yahoo" class="search_dropdown_item"></div>
+    </div>
+    <div id="search_bar_google_wrapper" class="search_dropdown_default_item_wrapper">
+        <img class="toolbar-search-result" src="search_tc.png"/>
+        <div id="search_bar_google" class="search_dropdown_item"></div>
+    </div>
+    <div id="search_bar_roboform_wrapper" class="search_dropdown_default_item_wrapper">
+        <img class="toolbar-search-result" src="rfsearch_tc.png"/>
+        <div id="search_bar_roboform" class="search_dropdown_item"></div>
+    </div>
+    <div id="search_bar_ebay_wrapper" class="search_dropdown_default_item_wrapper">
+        <img class="toolbar-search-result" src="search_tc.png"/>
+        <div id="search_bar_ebay" class="search_dropdown_item"></div>
+    </div>
+    <div id="search_bar_amazon_wrapper" class="search_dropdown_default_item_wrapper">
+        <img class="toolbar-search-result" src="search_tc.png"/>
+        <div id="search_bar_amazon" class="search_dropdown_item"></div>
+    </div>
+    <div id="search_bar_options_wrapper" class="search_dropdown_default_item_wrapper">
+        <img class="toolbar-search-result" src="options.png"/>
+        <div id="search_bar_options" class="search_dropdown_item"></div>
+    </div>
+</div>
+
+<!--Fill from Identity MiniDialog  Show it: OnClick at the left corner -->
+<div id="identity_minidialog_div" style="display:none;">
+    <table id="identitymini_toptable" border="0" >
+        <tr>
+            <td id="identitymini_topcaption_td">Fill from Identity</td>
+        </tr>
+        <!--SEPARATOR-->
+        <tr><td><div class="match_separator_line"></div></td></tr>
+    </table>
+    <table id="identity_minidialog_middletbl" border="0" >
+        <!--main row with matching logins-->
+        <tr>
+            <td id="Td1" colspan="2">
+                <fieldset id="identitymini_fieldset">
+                    <legend></legend>
+                    <table id="identitymini_groupstable" border="0">
+                    </table>
+                </fieldset>
+            </td>
+        </tr>
+        <tr id="identity_minidialog_separator2_tr"><td colspan="2"><div class="match_separator_line"></div></td></tr>
+
+        <!--Fill empty checkbox  and Show all Identities-->
+        <tr>
+            <td id="identitymini_fillempty_td">
+                <input type="checkbox" id="identitymini_fillempty_check"><label id="identitymini_fillempty_lbl" for="identitymini_fillempty_check">Fill Empty Fields Only</label>
+            </td>
+            <td id="identitymini_showall_td" align="center" width="100px">
+                <a href="#" id="identitymini_showall_link">Show all Identities</a>
+            </td>
+        </tr>
+    </table>
+    <table id="identitymini_btnstable" border="0" >
+        <tr>
+            <td id="identitymini_fill_td"><input type="button" value="Fill Forms" id="identitymini_fill_btn" class="round_btn1" /></td>
+            <td id="identitymini_submit_td" align="center"><input type="button" value="Fill & Submit" id="identitymini_submit_btn" class="round_btn1" /></td>
+            <td id="identitymini_edit_td" align="right"><input type="button" value="Edit" id="identitymini_edit_btn"  class="round_btn1" /></td>
+        </tr>
+    </table>
+</div>
+
+<!--Matching Passcards dialog. We will show it: OnClick at the left corner -->
+<div id="match_dialog_div" style="display:none;">
+    <table id="rfmatch_toptable" border="0">
+        <tr>
+            <td id="rfmatch_topcaption_td">Matching Logins</td>
+        </tr>
+        <!--SEPARATOR-->
+        <tr>
+            <td>
+                <div class="match_separator_line"></div>
+            </td>
+        </tr>
+    </table>
+    <table id="rfmatch_middletable" border="0">
+        <!--main row with matching logins-->
+        <tr>
+            <td id="rfmatch_loginstable_td" colspan="2">
+                <!--inner fieldset, ir we have many fields, then scrollbar will appear. This fieldset has fixed height. Set it on js-->
+                <fieldset id="rfmatch_logins_fieldset">
+                    <legend></legend>
+                    <table id="rfmatch_loginstable" border="0">
+                    </table>
+                </fieldset>
+            </td>
+        </tr>
+        <!--SEPARATOR-->
+        <tr>
+            <td colspan="2">
+                <div class="match_separator_line"></div>
+            </td>
+        </tr>
+        <!--Fill empty checkbox-->
+        <tr>
+            <td id="rfmatch_fillempty_td">
+                <input type="checkbox" id="rfmatch_fillempty_check">
+                <label id="rfmatch_fillempty_lbl" for="rfmatch_fillempty_check">Fill Empty Fields Only</label>
+            </td>
+            <td id="rfmatch_showalllogins_td" align="center" width="90px">
+                <a href="#" id="rfmatch_showall_link">Show all Logins</a>
+            </td>
+        </tr>
+    </table>
+    <table id="rfmatch_btnstable" border="0">
+        <tr>
+            <td id="rfmatch_edit_td">
+                <input type="button" value="Edit" id="rfmatch_edit_btn" class="round_btn1"/>
+            </td>
+            <td id="rfmatch_fill_td" align="center">
+                <input type="button" value="Fill Forms" id="rfmatch_fill_btn" class="round_btn1"/>
+            </td>
+            <td id="rfmatch_submit_td" align="right">
+                <input type="button" value="Fill & Submit" id="rfmatch_submit_btn" class="round_btn1"/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!--context menu (right mouse click)-->
+<div id="contextmenu_div" style="display:none;">
+    <table id="contextmenu_table" border="0">
+        <tr id="contextmenu_edit_tr">
+            <td class="contextmenu_item_normal">Edit</td>
+        </tr>
+        <tr id="contextmenu_loginsame_tr">
+            <td class="contextmenu_item_normal">Login in Same tab</td>
+        </tr>
+        <tr id="contextmenu_loginnew_tr">
+            <td class="contextmenu_item_normal">Login in New tab</td>
+        </tr>
+        <tr id="contextmenu_gofill_tr">
+            <td class="contextmenu_item_normal">Go & Fill</td>
+        </tr>
+        <tr id="contextmenu_goto_tr">
+            <td class="contextmenu_item_normal">Go To</td>
+        </tr>
+        <tr id="contextmenu_fillformsid_tr">
+            <td class="contextmenu_item_normal">Fill Forms</td>
+        </tr>
+        <tr id="contextmenu_fillsubmitid_tr">
+            <td class="contextmenu_item_normal">Fill & Submit</td>
+        </tr>
+        <tr id="contextmenu_rename_tr">
+            <td class="contextmenu_item_normal">Rename</td>
+        </tr>
+        <tr id="contextmenu_delete_tr">
+            <td class="contextmenu_item_normal">Delete</td>
+        </tr>
+        <tr id="contextmenu_rejectsharedfolder_tr">
+            <td  class="contextmenu_item_normal">Reject Shared Folder</td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

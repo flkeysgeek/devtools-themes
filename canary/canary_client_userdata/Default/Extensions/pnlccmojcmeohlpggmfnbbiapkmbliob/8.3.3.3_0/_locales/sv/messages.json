@@ -1,0 +1,14 @@
+{
+   "RFOSetup_CreateNewAccount": {
+      "message": "Skapa nytt RoboForm-konto"
+   },
+   "RFOSetup_EnterAccountId": {
+      "message": "E-post eller Användar-ID:"
+   },
+   "Setup_ConfirmMasterPassword_Password_Text": {
+      "message": "Huvudlösenord:"
+   },
+   "Setup_ConfirmMasterPassword_Prompt": {
+      "message": "Se till att du vet och anger ditt huvudlösenord korrekt"
+   }
+}

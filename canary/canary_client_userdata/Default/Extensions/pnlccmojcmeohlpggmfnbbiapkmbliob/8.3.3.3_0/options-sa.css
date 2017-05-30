@@ -1,0 +1,404 @@
+#prefs_body {
+    margin: 0;
+}
+
+#menurf_autosave_options {
+    background:url(options_autosave.png) no-repeat 5px 7px;
+}
+
+#menuaccount {
+    background:url(options_browsers.ico) no-repeat 5px 7px;
+}
+
+#menuform_fill {
+    background:url(options_autofill.png) no-repeat 5px 7px;
+}
+
+#menusearch {
+    background:url(options_search.png) no-repeat 5px 7px;
+}
+
+#menusecurity {
+    background:url(options_security.png) no-repeat 5px 7px;
+}
+
+#menuextended {
+    background:url(options_security.png) no-repeat 5px 7px;
+}
+
+/* MAIN OPTIONS BOX 700*500 with border  */
+#opt_content_wrapper {
+    position: relative;
+    width: 700px;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 0;
+}
+
+#opt_content_wrapper1 {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    border: 1px solid lightgrey;
+}
+#opt_header {
+    background: white;
+    height: 50px;
+    padding-left:2px;
+    padding-top:6px;
+}
+#opt_username_label {
+    font-family: 'Segoe UI';
+    font-size: 20px;
+    padding:0;
+    margin:0;
+    position:fixed;
+    margin-left:2px;
+    font-weight: 500;
+}
+/* LEFT grey PART with option sections width=195px */
+#opt_div_dialog_section {
+    position: absolute;
+    left: 0px;
+    right: 33%;
+    bottom: 0px;
+    top: 0px;
+    width: 195px;
+    height: 500px;
+}
+
+#prefs_menu {
+    margin: 0;
+    padding: 0;
+    background: #f1f1f1;
+    width: 195px;
+    height: 100%;
+}
+
+/* Left part 'buttons-sections' */
+.menubutton:hover {
+    background: white;
+    color: grey;
+}
+
+.menubutton {
+    font-weight: 400;
+}
+
+.menubutton_active {
+    background: #e0e0e0;
+    font-weight: 500;
+}
+
+.menubuttontext {
+    height: 40px;
+    font-family: 'Segoe UI';
+    font-size: 16px;
+    padding-left: 35px;
+    cursor: default;
+    color: RGB(20, 20, 20);
+    line-height: 40px;
+}
+
+.menuspacer {
+    height: 6px;
+    padding-top: 5px;
+    background: #F5FAFC;
+}
+
+.menuspacer div {
+    height: 1px;
+}
+
+/* RIGHT PART - options(inputs, checkboxes, select) */
+#opt_div_content_section {
+    position: relative;
+    left: 195px;
+    width: 505px;
+    margin: 0;
+    padding: 0;
+    height: 500px;
+    top:1px;
+}
+
+.opt_section_caption_div {
+    font-family: 'Segoe UI';
+    font-size: 20px;
+    font-weight: 500;
+    padding-bottom:10px;
+    margin-left: -2px;
+}
+
+.rf_options_div {
+    display: none;
+    width: 505px;
+    min-width: 505px;
+    max-width: 505px;
+    height: 500px;
+    margin: 0;
+    border: 0px dotted blue;
+    padding: 5px 0 0 20px;
+    font-family: 'Segoe UI';
+    font-size: 14px;
+}
+
+.rf_prefs_fieldset {
+    padding: 0;
+    margin: 0;
+    width: 495px;
+    border: 0px dotted red;
+}
+
+.opt_section_div {
+    padding: 0;
+    margin: 0;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+/**  SAVE INDICATOR  **/
+#mp_div_loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0 0 0 -27px;
+    width: 50px;
+    height: 12px;
+    border: 0px solid red;
+    z-index: 10000;
+    display: none;
+}
+
+#rf_prefs_autolog_div {
+    margin: 8px 0 0;
+    padding: 0;
+    padding-top: 5px;
+}
+
+#rf_logoff_info {
+    font-family: Segoe UI;
+    font-size: 12px;
+    color: RGB(90, 90, 90);
+}
+
+#rf_logoff_disabled_bypolicy {
+    font-family: Segoe UI;
+    font-size: 11px;
+    color: RGB(90, 90, 90);
+}
+
+#logoff_minutes_input {
+    font-size: 14px;
+    height: 20px;
+    width: 65px;
+    text-indent:3px;
+}
+
+.options_input_class {
+    width: 200px;
+    max-width: 400px;
+    -webkit-border-radius: 3px;
+    border: solid 1px #999;
+    font: normal 13px/100% Helvetica, Arial, Tahoma, sans-serif;
+    padding: 4px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(249, 249, 249, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
+    margin-left: 15px;
+}
+
+#options_page_mask {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1500;
+    display: none;
+}
+
+/** Change Master Password **/
+
+#opt_start_change_master_password_buttons_div {
+    margin-top: 20px;
+}
+
+#opt_start_change_master_password_change {
+    padding: 0;
+    width: 175px;
+    min-width: 175px;
+    max-width: 175px;
+    height: 34px;
+    min-height: 34px;
+    max-height: 34px;
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
+    margin: 0 6px 0 0;
+}
+
+#opt_start_change_master_password_header_text {
+    font-weight: 400;
+    color: RGB(75, 75, 75);
+    font-size: 16px;
+    text-align: left;
+    vertical-align: central;
+    margin-bottom: 10px;
+}
+
+#opt_start_change_master_password_email {
+    font-weight: 400;
+    color: RGB(95, 95, 95);
+    font-size: 14px;
+    text-align: left;
+    vertical-align: central;
+    margin-bottom: 10px;
+}
+
+#opt_change_master_password_div {
+    margin: 0;
+    border: 0 solid red;
+    background-color: transparent;
+    font-family: Segoe UI;
+    width: 350px;
+    display: none;
+}
+
+#opt_change_master_password_header_div {
+}
+
+#opt_change_master_password_header_text {
+    font-weight: 400;
+    color: RGB(75, 75, 75);
+    font-size: 16px;
+    text-align: left;
+    vertical-align: central;
+    margin-top: 10px;
+}
+
+#opt_change_master_password_content_div {
+}
+
+.opt_change_master_password_content_input {
+    margin-top: 10px;
+}
+
+#opt_change_master_password_current_label,
+#opt_change_master_password_new_label,
+#opt_change_master_password_confirm_label {
+    font-weight: 500;
+    color: RGB(115, 115, 115);
+    font-size: 12px;
+    text-align: left;
+    border-bottom: 3px solid white;
+    border-top: 8px solid white;
+}
+
+#opt_change_master_password_current_input,
+#opt_change_master_password_new_input,
+#opt_change_master_password_confirm_input {
+    padding: 0;
+    margin: 0;
+    width: 303px;
+    font-size: 12px;
+    height: 22px;
+    min-height: 22px;
+    max-height: 22px;
+    text-indent: 3px;
+}
+
+#opt_change_master_password_footer_div {
+}
+
+#opt_change_master_password_error_div {
+    height: 115px;
+    font-family: Segoe UI;
+    font-weight: 400;
+    color: RGB(75, 75, 75);
+    font-size: 12px;
+    text-align: left;
+    vertical-align: central;
+    margin-top: 5px;
+}
+
+#opt_change_master_password_buttons_div {
+    margin-top: 10px;
+}
+
+#opt_change_master_password_change {
+    padding: 0;
+    width: 75px;
+    min-width: 75px;
+    max-width: 75px;
+    height: 34px;
+    min-height: 34px;
+    max-height: 34px;
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
+    margin: 0 6px 0 0;
+}
+
+#accountid_link {
+    font-size: 13px;
+    font-family: 'Segoe UI';
+    text-decoration: underline;
+}
+
+#accountid_link:link,
+#accountid_link:visited,
+#accountid_link:hover,
+#accountid_link:active {
+    color: RGB(0, 129, 229);
+}
+
+
+/** End Section **/
+
+#options_progress_dialog {
+    position: fixed;
+    left: 50%;
+    top: 50px;
+    background-color: white;
+    border: solid 1px lightgray;
+    z-index: 1500;
+    width: 300px;
+    margin-left: -150px;
+    display: none;
+}
+
+#options_progress_dialog_header {
+    margin: 5px;
+    font-weight: 400;
+    color: RGB(75, 75, 75);
+    font-size: 14px;
+    text-align: left;
+    vertical-align: central;
+}
+
+#options_progress_dialog_progress {
+    width: 100%;
+    background-color: #ddd;
+}
+
+#options_progress_dialog_bar {
+    width: 0;
+    height: 30px;
+    background-color: #4CAF50;
+}
+
+#options_progress_dialog_label {
+    text-align: center;
+    line-height: 30px;
+    color: white;
+}
+
+* {
+	user-drag: none; 
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}

@@ -1,0 +1,16 @@
+// Copyright (C) 1999-2016 Siber Systems Inc. All Rights Reserved.
+if(typeof zffg==="undefined"){var zffg=1;var zad=true;var zaww=navigator.appVersion.indexOf('Windows')!=-1;var zoa=navigator.appVersion.indexOf('Mac')!=-1;var zbss=navigator.appVersion.indexOf('Linux')!=-1;var zif=false;var zag=false;var zczk=false;var zac=false;var zab=false;var zaf=false;var zae=false;function zffh(){return"chrome";}
+var zio="Can not load extension";var data=chrome.app.getDetails();if(data){zio="Can not load "+(data.name||data.description)+" ("+data.version+")";}
+function zoj(){return chrome.extension&&chrome.extension.getBackgroundPage();}
+function zoc(){return zoj().zle;}function zsh(){return zoj().zfez;}
+function zffi(zcm){chrome.runtime.sendMessage(zcm);}
+function zffj(zht,zhu,zfs,zffk){var zly={"file":zfs,"allFrames":true,"matchAboutBlank":true}
+;if(zhu){zly.frameId=zhu;zly.allFrames=false;}chrome.tabs.executeScript(zht,zly,function(){if(chrome.runtime.lastError){}
+else{try{if(zffk){zffk();}}catch(zhj){}}});}function zafu(item){return chrome.extension.getURL(item);}
+if(typeof(RfapiJS)!="undefined"){var ztk=RfapiJS.EnRfDataItemType;var zaec=RfapiJS.ITEMINFO_TYPE_PROP;var zaed=RfapiJS.ITEMINFO_PATH_PROP;var zctw=RfapiJS.ITEMINFO_SIZE_PROP;var zctv=RfapiJS.ITEMINFO_MODTIME_PROP;var zctu=RfapiJS.ITEMINFO_CREATETIME_PROP;}
+var RfFieldType={"RfField_None":0,"RfFieldText":1,"RfFieldPassword":2,"RfFieldCheckbox":3,"RfFieldRadioCheck":4,"RfFieldRadio":5,"RfFieldTextArea":6,"RfFieldSelect":7,"RfField_Last":8
+}
+;var zbme=13;var zbie=403;var zcuz=-1;var zbig=410;var zcum=411;var zaoe=1;var zcwh=10;var zaoh=100;var zaon=101;var zcoy=102;var zbus=6;var zbut=80;var zanu="action";var zffl="autologoff";var zwo="bSubmit";var zbjf="bNewWindow";var zbje="bFill";var zbjd="bNavigate";var zup="bIsBookmark";var zbjg="bFillOnlyEmptyFields";var zsn="context";var zffm="data";var zffn="dialogId";var zffo="current";var zbka="types";var zanv="name";var zun="item";var zbli="url";var zbmf="id";var zuv="pwd";var zuu="p";var zsf="item_info";var zsp="item_data";var zart="user";var zaru="password";var zbud="email";var zcwu="phone";var zbue="master_password";var zbyu="otp_password";var zbyv="otp_memorize";var zarv="otp_channel";var zbyw="otp_new";var zuo="type";var zus="path";var zyl="items";var zbuw="search";var zcvh="parts";var zcvj="icon";var zffp="class";var zbvt="src";var zbvr="img";var zazv="div";var zbwo="tr";var zbwt="td";var zciy="table";var zsl="error";var ztu="code";var ztt="description";var zanw="bcache";var zcgl="stars";var zcgr="symbols";var zanp="cmd";var zffq="matchcard_currentindex";var zcfw="field_name";var zcez="last_fieldIndex";var zcgb="field_order";var zcga="field_index";var zcfx="field_caption";var zcfy="field_id";var zcfz="field_type";var zcgc="field_m_bDefaultValue";var zbyz="https://online.roboform.com/login?lang="+window.navigator.language;var zbzc="http://www.roboform.com/support/faq";var zbzf="https://www.roboform.com/php/rtss/main/?lang="+window.navigator.language;var zbzi="https://www.roboform.com/";var zffr="version";var zak="May 18, 2017";if(zaf){zffr="1.1.3.0";zak="December 28, 2016";}
+var zffc="RF-Chrome";function zam(){zan("Common: "+zao(zam.caller,arguments));}
+function zap(){zan("Common: "+zao(zap.caller,arguments));}
+}

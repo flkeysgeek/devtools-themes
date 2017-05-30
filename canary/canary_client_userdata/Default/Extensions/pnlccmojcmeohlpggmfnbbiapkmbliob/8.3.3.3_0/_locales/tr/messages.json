@@ -1,0 +1,14 @@
+{
+   "RFOSetup_CreateNewAccount": {
+      "message": "Yeni RoboForm hesabı oluşturun"
+   },
+   "RFOSetup_EnterAccountId": {
+      "message": "E-posta veya Kullanıcı Kimliği:"
+   },
+   "Setup_ConfirmMasterPassword_Password_Text": {
+      "message": "Ana parola:"
+   },
+   "Setup_ConfirmMasterPassword_Prompt": {
+      "message": "Ana Parolanızı doğru bildiğinizden ve girdiğinizden emin olun."
+   }
+}

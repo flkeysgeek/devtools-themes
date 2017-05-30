@@ -1,0 +1,33 @@
+.checkbox-div input[type=checkbox] {
+	display:none;
+}
+
+.checkbox-div label{
+	background-image: url("checkbox_spr.png");
+}
+
+.checkbox-div input[type=checkbox] + label{
+    display: inline-block;
+    height: 16px;
+    padding-left: 20px;
+	background-position: 0px -48px;
+    background-repeat: no-repeat;
+    line-height: 16px;
+}
+
+.checkbox-div input[type=checkbox] + label:hover,
+.checkbox-div input[type=checkbox] + label:focus {
+	background-position: 0px -16px;
+	background-repeat: no-repeat;
+}
+
+.checkbox-div input[type=checkbox]:checked + label{
+	background-position: 0px -32px;
+	background-repeat: no-repeat;
+}
+
+.checkbox-div input[type=checkbox]:checked + label:hover,
+.checkbox-div input[type=checkbox]:checked + label:focus {
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
