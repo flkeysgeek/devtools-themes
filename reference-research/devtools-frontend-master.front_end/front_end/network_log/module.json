@@ -1,9 +1,0 @@
-{
-    "dependencies": [
-        "sdk"
-    ],
-    "scripts": [
-        "NetworkLog.js",
-        "HAREntry.js"
-    ]
-}
