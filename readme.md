@@ -38,11 +38,13 @@ After going Dark for a couple weeks, got bug up my ??? to make some minor css tw
 
 - Enable DevTools experiments at `chrome://flags/#enable-devtools-experiments`
 - relaunch Chrome and open DevTools 
-- open `Settings > Experiments` and check *Allow UI themes* experiment.   
+- open `Settings > Experiments` and check *Allow UI themes* experiment
+- open devtools > setting > Experiments and check *Allow custom UI themes*
 
-#### from repo
+#### from github repository
 - download repository and unzip "zero II" folder 
 - open chrome://extensions 
+- Zero Dark Matrix must be removed -- zero II uses same extension ID
 - click "Load unpacked extension..." and select extracted "zero II" folder
 - close and re-open any open "Developer Tools" windows
 
