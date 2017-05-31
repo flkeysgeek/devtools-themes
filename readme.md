@@ -1,9 +1,15 @@
 ## Overview ##
 - **Improve readability of devtools Zero Dark Matrix canary.css**   
 changes are minor
-- **Explain how to find and change other devtools selectors**
+- **How to find Developer Tools css hooks i.e. selectors**  
+inspecting devtools with devtools 
 
-## theme changes ##
+## Zero Dark Matrix theme -- Original ##
+- chrome web store: [DevTools Theme: Zero Dark Matrix](https://chrome.google.com/webstore/detail/devtools-theme-zero-dark/bomhdjeadceaggdgfoefmpeafkjhegbo?hl=en-US)
+- github development: [zero-base-themes](https://github.com/mauricecruz/zero-base-themes)
+
+## Zero Dark Matrix theme -- Changes ##
+
 - comment color changed to dim pink
 - gutter lineno little brighter
 - elements > side-panel > styles: unmatched selectors changed to lime green
@@ -14,7 +20,7 @@ changes are minor
 ...arrow above popover border more clutter than value (hidden)  
 ...moved popup up to fully cover next line -- sliver looks like junk  
 
-**standard Dark theme** . . . . . **Zero Dark Matrix**  
+**standard Dark theme** . . . **Zero Dark Matrix**  
 ![](http://i.imgur.com/JN7CrzM.png) . ![](http://i.imgur.com/H7KxeL1.png) 
 
 **changes**  
@@ -32,9 +38,15 @@ After going Dark for a couple weeks, got bug up my ??? to make some minor css tw
 
 - Enable DevTools experiments at `chrome://flags/#enable-devtools-experiments`
 - relaunch Chrome and open DevTools 
-- open `Settings > Experiments` and check *Allow UI themes* experiment.
+- open `Settings > Experiments` and check *Allow UI themes* experiment.   
 
-TBD ... ***under development***
+#### from repo
+- download repository and unzip "zero II" folder 
+- open chrome://extensions 
+- click "Load unpacked extension..." and select extracted "zero II" folder
+- close and re-open any open "Developer Tools" windows
+
+#### from chrome web store -- under development
 
 Leaning toward distributing changes via **devtools theme color picker** with  changes as default for **Zero Dark Matrix**
 
