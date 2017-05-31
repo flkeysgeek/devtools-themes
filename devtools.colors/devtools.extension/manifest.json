@@ -1,5 +1,6 @@
 {
-	"content_security_policy": "script-src 'self'; object-src 'self'",
+	//"content_security_policy": "script-src 'self'; object-src 'self'",
+	
 	"name": "devtools colors",
 	"description": "Change Developer Tools Colors",
 
@@ -16,7 +17,14 @@
 	"background": {
 		"scripts": ["background.js"]
 	},   
+	"options_page": "options.html",	
 	
+	//done by default
+	//<link href="./colors-16.png" rel="panel icon" />
+
+	"web_accessible_resources": [
+		"./*.png"
+	],	
     
     "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgba6wwaJrHOeY5ILDkF3JZmsQ0BQ3p/ycRtrDXJgIBrdNYEHdrAljIe7weMt7vMY6jRsE4YGLcsv8p2ko7gUWxyMDrsvY94wGpcsLrEN2uhh/x3C/xPd1UOKMzWE0VaL9wnWZsgeJ6m8nkBfKYU0G19yuD+tQqCIzZs7Cm8l8qUF9+CiBc/r50SC5BfIU4QH5vzPfQlEcrnmIQkGVu6FnhDNLfbSUf03Em07PVLOFnfJHVCoFEU/fuIhrmSUsFRxkaku0zGGxXXftd+8KTDDM5xhhLXLQbmfb61HoKvjtlsIY3i3MtoYaz5I9WiGTVl7BBBhNzA89oA+RkuHuOr2RwIDAQAB",
 	"manifest_version": 2,

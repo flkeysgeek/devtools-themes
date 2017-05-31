@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DevTools &gt; theme color picker  &gt; help</title>
+</head>
+
+<body>
+/* credit: https://www.chromium.org/developers/how-tos/run-chromium-with-flags */
+<div dir="ltr">There are command line flags (or "switches") that Chromium (and Chrome) accept in order to enable particular features or modify otherwise default functionality.
+<div><br>
+</div>
+<div>Current switches may be found at&nbsp;<a href="http://peter.sh/examples/?/chromium-switches.html">http://peter.sh/examples/?/chromium-switches.html</a></div><div><br></div><div><br></div>
+<div>It is important to note that using these switches is not supported or recommended. They should only be used for temporary cases and may break in the future.</div>
+<div><br>
+</div>
+<div>To use a command line switch:</div>
+<div><br>
+</div>
+<h3><a name="TOC-On-Windows:"></a>On Windows:</h3>
+<div>
+<ol><li style="font-size:12px">Right click on your "Chrome" icon.</li>
+<li style="font-size:12px">Choose properties</li>
+<li style="font-size:12px">At the end of your target line add the command line flag. For example:
+<ul><li><code>--disable-gpu-vsync</code></li></ul>
+</li>
+<li><span style="font-size:12px">With that example flag, it should look like: </span><code style="font-size:12px">chrome.exe&nbsp;</code><font color="#006000" face="monospace"><span style="font-size:12px">--disable-gpu-vsync</span></font></li>
+</ol>
+<h3 style="font-size:12px"><a name="TOC-On-OS-X:"></a>On OS X:</h3>
+<div style="font-size:12px">
+<div class="sites-codeblock sites-codesnippet-block">
+<code>/Applications/Chromium.app/Contents/MacOS/Chromium --remote-debugging-port=9222<br>
+<br>
+# for Google Chrome you'll need to escape spaces like so: <br>
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222</code></div>
+</div>
+<div style="font-size:12px"><br>
+</div>
+<h3 style="font-size:12px"><a name="TOC-On-Linux:"></a>On Linux:</h3>
+<div>
+<div class="sites-codeblock sites-codesnippet-block" style="font-size:12px">
+<code>chromium-browser --remote-debugging-port=9222</code></div>
+<h2 style="font-size:12px"><a name="TOC-Setting-V8-Flags"></a>Setting V8 Flags</h2><div style="font-size:12px">V8 can take a number of flags as well, via Chrome's <code>js-flags</code> flag. For example, this traces V8 optimizations:</div><div><div class="sites-codeblock sites-codesnippet-block"><font color="#006000" face="monospace" style="font-size:12px">chrome.exe&nbsp;--js-flags="</font><font color="#006000" face="monospace"><span style="font-size:12px;line-height:12px">--trace-opt --trace-deopt --trace-bailout</span></font><span style="font-size:12px;color:rgb(0,96,0);font-family:monospace">"</span></div></div><div style="font-size:12px"><font color="#006000" face="monospace"><br></font></div><div style="font-size:12px">To get a listing of all possible V8 flags:</div><div style="font-size:12px"><div class="sites-codeblock sites-codesnippet-block"><font color="#006000" face="monospace">chrome.exe&nbsp;--js-flags="--help"</font></div></div><div style="font-size:12px"><br></div><div style="font-size:12px">Browse <a href="http://code.google.com/p/v8/w/list">the V8 wiki</a> for more flags for V8.</div><div style="font-size:12px"><br></div><h3><a name="TOC-Setting-Flags-for-Chrome-on-Android"></a>Setting Flags for Chrome on Android</h3><div>Visit '<code>about:version</code>' to review the flags that are effective in the app.&nbsp;</div><div><br></div><div>Setting flags for Chrome on Android requires <b>a rooted device</b>, as it necessitates write access to <code>/data/local</code></div><div><br></div><div>You can change these like so:</div><div style="font-size:12px"><br></div><div><div class="sites-codeblock sites-codesnippet-block"><code style="font-size:12px"># For content shell<br>adb shell 'echo "chrome &lt;flags&gt;" &gt; /data/local/tmp/content-shell-command-line</code><font color="#274e13"><span style="font-size:12px;line-height:1">'<br><br>&nbsp;# For chromium test shell<br></span></font><code style="font-size:12px">adb shell 'echo "chrome &lt;flags&gt;" &gt; /data/local/tmp/android-webview-command-line</code><font color="#274e13"><span style="font-size:12px;line-height:1">'</span></font><font color="#274e13"><span style="font-size:12px;line-height:1"><br></span><br><span style="font-size:12px;line-height:1"># On a chromium checkout, the following utilities can be used:<br></span><br># For chrome public, or Google Chrome<br>adb_chrome_public_command_line &lt;flags&gt;<br><br># For content shell:<br><span style="font-size:11.818181991577148px;line-height:10.909090995788574px">adb_content_shell_command_line &lt;flags&gt;</span><br><br><span style="font-size:11.818181991577148px;line-height:10.909090995788574px"># For chromium test shell:</span><br><span style="font-size:11.818181991577148px;line-height:10.909090995788574px">adb_android_webview_command_line &lt;flags&gt;<br><br># Or, you can launch content shell with flags directly<br>abd_run_content_shell &lt;flags&gt;<br>adb_run_android_webview &lt;flags&gt;</span></font></div></div><div><span style="font-size:12px"><br></span></div><div><span style="font-size:12px">Remember to quit the app completely and restart for flags to take effect.</span></div><div><span style="font-size:12px"><br></span></div><h3><a name="TOC-Setting-flags-for-ContentShell-no-Android"></a><span style="font-size:12px">Setting flags for ContentShell no Android</span></h3><div><span style="font-size:12px">There's an alternative method for setting flags with ContentShell that doesn't require a rooted device:</span></div><div><span style="font-size:12px"><br></span></div><div><div><span style="font-size:12px">1. Download a <a href="https://download-chromium.appspot.com/?platform=Android&amp;type=continuous">LKGR build of Android</a>.</span></div><div><span style="font-size:12px">2. This will include both ChromePublic.apk and ContentShell.apk</span></div><div><span style="font-size:12px">3. Install ContentShell APK to your device.</span></div><div><span style="font-size:12px">4. Run this magic incantation</span></div><div><span style="font-size:12px"><br></span></div><div></div><div class="sites-codeblock sites-codesnippet-block"><div><span style="font-size:12px"><code>adb shell am start \</code></span></div><div><span style="font-size:12px"><code>&nbsp; -a android.intent.action.VIEW \</code></span></div><div><span style="font-size:12px"><code>&nbsp; -n org.chromium.content_shell_apk/.ContentShellActivity \</code></span></div><div><span style="font-size:12px"><code>&nbsp; --es activeUrl "http://chromium.org" \</code></span></div><div><span style="font-size:12px"><code>&nbsp; --esa commandLineArgs --show-paint-rects,--show-property-changed-rects</code></span></div></div></div><div><span style="font-size:12px"><br></span></div><div><span style="font-size:12px">This will launch contentshell with the supplied flags. You can apply whatever commandLineArgs you want in that syntax.</span></div><div><h3><a name="TOC-Setting-Flags-for-Chrome-OS"></a>Setting Flags for Chrome OS</h3><div style="font-size:13.3333330154419px"><ol><li>Put the device into dev mode so you can get a root shell</li><li>Modify /etc/chrome_dev.conf (read the comments in the file for more details)</li><li>Restart the UI via:<br><code>sudo restart ui</code></li></ol></div></div>
+</div>
+</div></div>    
+    
+    </body>
+</html>

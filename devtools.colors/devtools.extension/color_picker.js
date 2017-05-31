@@ -17,4 +17,5 @@ var e;			//global used for try/catch
 //. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .}
 (function() {[	//global variables and functions defined but not used
     chrome,
+    setup,
 e]});
