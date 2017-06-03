@@ -3,9 +3,9 @@ var defaultColor = "blue";
 --------------------------------------------------------------------------------------------------*/
 function setup()
 {
-    document.getElementById("saveBtn").addEventListener("click", saveOptions, false);
-    document.getElementById("eraseBtn").addEventListener("click", eraseOptions, false);
-    loadOptions();
+//    document.getElementById("saveBtn").addEventListener("click", saveOptions, false);
+//    document.getElementById("eraseBtn").addEventListener("click", eraseOptions, false);
+//    loadOptions();
 }
 function loadOptions() {
 	var favColor = localStorage.favColor;

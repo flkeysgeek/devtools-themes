@@ -2,12 +2,117 @@
 <html>
 <head>
 	<title>Options for Color Chooser</title>
+    <link href="styles.css" rel="stylesheet" media="all">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,900' rel='stylesheet' type='text/css">
 	<script type="text/javascript" src="options.js"></script>
+<style>
+.sp-replacer {
+    margin: 0;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 4px;
+    display: inline-block;
+    border: solid 1px #91765d;
+    background: #eee;
+    color: #333;
+    vertical-align: middle;
+}
+sp-preview, .sp-alpha, .sp-thumb-el {
+    position: relative;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+}
+.sp-preview {
+    position: relative;
+    width: 25px;
+    height: 20px;
+    border: solid 1px #222;
+    margin-right: 5px;
+    float: left;
+    z-index: 0;
+}
+.sp-dd {
+    padding: 2px 0;
+    height: 16px;
+    line-height: 16px;
+    float: left;
+    font-size: 10px;
+}    
+</style>
 </head>
 <body>
+<div class="settings">
+    <div class="settings-title">DevTools tTheme Colors</div>
+<table border="1" cellpadding="0" cellspacing="3">
+  <tbody>
+    <tr>
+        <th nowrap>show</th>
+        <th align="center" nowrap>tab</th>
+        <th width="300" align="left" nowrap>item / description</th>
+        <th nowrap>css selectors</th>
+        <th nowrap>FG color</th>
+        <th nowrap>BG color</th>
+        <th nowrap>border color</th>
+        </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td align="center">all</td>
+      <td>line number displayed in left gutter </td>
+      <td>.CodeMirror-gutter-elt</td>
+      <td nowrap>
+          <input type="text" class="basic" value="blue" style="width:42px ">
+          <div class="sp-replacer sp-light">
+              <div class="sp-preview">
+                  <div class="sp-preview-inner" style="background-color: rgb(0, 0, 255);"></div>
+              </div>
+              <div class="sp-dd">▼</div>
+          </div>          
+      </td>
+      <td>&nbsp;</td><td>&nbsp;</td>
+    </tr><tr><td>&nbsp;</td>
+      <td align="center">all</td>
+      <td>comments</td><td>*-comment</td><td nowrap>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td>
+        <td align="center">all</td><td>&nbsp;</td>
+        <td><p>.cm-highlight<br>
+        .highlighted-row        </p></td>
+        <td nowrap>3s 0s</td>
+        <td>9s 0s</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td>
+        <td align="center">console</td>
+        <td>&nbsp;</td><td>#console-messages .console-info-level .console-message-text</td>
+        <td nowrap>wheat</td>
+        <td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td align="center">console</td><td>&nbsp;</td><td>#console-messages .console-info-level .section &gt; .header .title</td><td nowrap>skyblue</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td>
+        <td align="center">all</td>
+        <td>tabs heading not selected</td><td>::shadow .tabbed-pane-placeholder<br>
+          .styles-section .header .subtitle</td>
+        <td nowrap>#bcbcbc</td>
+        <td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td>
+          <td align="center">sources</td><td>&nbsp;</td><td>&nbsp;</td><td nowrap>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td align="center">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td nowrap>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td align="center">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td nowrap>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td>
+        <td align="center">elements &gt; styles</td>
+        <td>unmatched css selectors</td>
+        <td>.simple-selector:not(.selector-matches)</td><td nowrap>#<b>04C526</b></td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td align="center">&nbsp;</td><td>selector </td><td>selector </td><td nowrap>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td align="center">&nbsp;</td>
+        <td>un-used e.g.  element.style&nbsp;when empty<br>
+          rgb(119, 119, 119)</td><td>.styles-section .selector<br>
+            .simple-selector</td><td nowrap>#b9b8b8</td><td>a5a5a5</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td>
+          <td align="center">elements</td>
+          <td>red  too dim  red for un-selected psuedo e.g. </td>
+          <td>.panel.elements ::shodow .parent.selected.expanded + .children &gt; li .webkit-html-pseudo-element:first-child</td>
+          <td nowrap>#e04f29</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td align="center">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td nowrap>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td>
+          <td align="center">elements</td>
+          <td>object inspector </td>
+          <td>::shadow .widget.has-padding .object-value-null, <br>
+            ::shadow .widget.has-padding .object-value-undefined {<br></td>
+          <td nowrap>#d2d2d2</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td>
+    <td align="center">elements</td>
+    <td>dim blue&nbsp;unreadable</td><td>.webkit-css-property</td><td nowrap>#FFEB3B</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+  </tbody>
+</table>
+<div id="addItem">
+</div>
+
+<div class="item"></div></div>
 
   
-
+<!--
 <div id="dead">
     
     <h1>Favorite Color</h1>
@@ -22,6 +127,6 @@
 	<br />
 	<button id="eraseBtn">Restore default</button>
 </div>
-
+-->
 </body>
 </html>
