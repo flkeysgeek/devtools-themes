@@ -995,12 +995,14 @@ label[is="dt-radio"]::shadow ::content .dt-radio-button:checked {
 }
 ::shadow .elements-disclosure ol li.parent::before,
 ::shadow .elements-disclosure ol li.parent.expanded::before {
-  -webkit-mask-image: -webkit-image-set(url("Images/toolbarButtonGlyphs.png") 1x, url("Images/toolbarButtonGlyphs_2x.png") 2x);
+	-webkit-mask-image: -webkit-image-set(
+                        url("Images/toolbarButtonGlyphs.png") 1x, 
+                        url("Images/toolbarButtonGlyphs_2x.png") 2x);
   background-color: #8c8c8c !important;
   background-image: none !important;
   -webkit-mask-repeat: no-repeat !important;
   color: rgba(0, 0, 0, 0) !important;
-  opacity: 1 !important;
+	opacity: 1.0 !important;
 }
 .styles-section.matched-styles .style-properties li.parent .expand-element {
   -webkit-mask-position: -4px -96px !important;
@@ -1015,7 +1017,7 @@ label[is="dt-radio"]::shadow ::content .dt-radio-button:checked {
   background-image: none !important;
   -webkit-mask-repeat: no-repeat !important;
   color: rgba(0, 0, 0, 0) !important;
-  opacity: 1 !important;
+	opacity: 1.0 !important;
 }
 .sidebar-pane-stack .sidebar-pane-title::before {
   -webkit-mask-position: -4px -96px !important;
@@ -1030,7 +1032,7 @@ label[is="dt-radio"]::shadow ::content .dt-radio-button:checked {
   background-image: none !important;
   -webkit-mask-repeat: no-repeat !important;
   color: rgba(0, 0, 0, 0) !important;
-  opacity: 1 !important;
+	opacity: 1.0 !important;
 }
 .event-listener-breakpoints li.parent::before {
   -webkit-mask-position: -4px -96px !important;
@@ -1045,7 +1047,7 @@ label[is="dt-radio"]::shadow ::content .dt-radio-button:checked {
   background-image: none !important;
   -webkit-mask-repeat: no-repeat !important;
   color: rgba(0, 0, 0, 0) !important;
-  opacity: 1 !important;
+	opacity: 1.0 !important;
 }
 .event-listener-breakpoints li.parent::before,
 .event-listener-breakpoints li.parent.expanded::before {
@@ -1064,7 +1066,7 @@ label[is="dt-radio"]::shadow ::content .dt-radio-button:checked {
   background-image: none !important;
   -webkit-mask-repeat: no-repeat !important;
   color: rgba(0, 0, 0, 0) !important;
-  opacity: 1 !important;
+	opacity: 1.0 !important;
 }
 .request-headers-view .outline-disclosure li.parent::before,
 .request-headers-view .outline-disclosure li.parent.expanded::before {
@@ -1077,7 +1079,7 @@ label[is="dt-radio"]::shadow ::content .dt-radio-button:checked {
   background-image: none !important;
   -webkit-mask-repeat: no-repeat !important;
   color: rgba(0, 0, 0, 0) !important;
-  opacity: 1 !important;
+	opacity: 1.0 !important;
   margin-right: 2px !important;
 }
 ::shadow #search-results-pane-file-based .parent::before {
@@ -1099,7 +1101,7 @@ label[is="dt-radio"]::shadow ::content .dt-radio-button:checked {
   background-image: none !important;
   -webkit-mask-repeat: no-repeat !important;
   color: rgba(0, 0, 0, 0) !important;
-  opacity: 1 !important;
+	opacity: 1.0 !important;
 }
 ::shadow .tree-outline li:not(.parent)::before {
   background-color: transparent !important;
@@ -1117,7 +1119,7 @@ label[is="dt-radio"]::shadow ::content .dt-radio-button:checked {
   background-image: none !important;
   -webkit-mask-repeat: no-repeat !important;
   color: rgba(0, 0, 0, 0) !important;
-  opacity: 1 !important;
+	opacity: 1.0 !important;
 }
 .timeline-expandable.timeline-expandable-expanded .timeline-expandable-arrow {
   -webkit-mask-position: -20px -96px !important;
@@ -1128,7 +1130,7 @@ label[is="dt-radio"]::shadow ::content .dt-radio-button:checked {
   background-image: none !important;
   -webkit-mask-repeat: no-repeat !important;
   color: rgba(0, 0, 0, 0) !important;
-  opacity: 1 !important;
+	opacity: 1.0 !important;
 }
 .sort-order-icon {
   -webkit-mask-image: -webkit-image-set(url("Images/toolbarButtonGlyphs.png") 1x, url("Images/toolbarButtonGlyphs_2x.png") 2x);
@@ -1136,7 +1138,7 @@ label[is="dt-radio"]::shadow ::content .dt-radio-button:checked {
   background-image: none !important;
   -webkit-mask-repeat: no-repeat !important;
   color: rgba(0, 0, 0, 0) !important;
-  opacity: 1 !important;
+	opacity: 1.0 !important;
 }
 .sort-ascending .sort-order-icon,
 .sort-ascending.sort-order-icon {
@@ -5378,4 +5380,3 @@ body /deep/ .dt-checkbox-text,
   -webkit-mask-position: -60px 90px;
 }
 
-/*# sourceMappingURL=canary.formated.css.map */
